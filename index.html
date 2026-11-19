@@ -7,7 +7,11 @@
   <meta name="description" content="Abingdon School student-led petition asking Senior Leadership to reinstate the Summer 2027 Germany Music Tour for Symphony Orchestra, Chapel Choir, and Big Band." />
   <link rel="canonical" href="https://savethetour.de/" />
 
-  <link rel="icon" type="image" href="/favicon.ico" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.ico" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/favicon.ico">
+  <link rel="manifest" href="/manifest.webmanifest">
+</head>
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Save the 2027 Germany Music Tour · Abingdon School" />
@@ -31,7 +35,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Avenir:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Asul:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=JetBrains+Mono:wght@400;500;600&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -50,8 +54,8 @@
       --header-bg: rgba(248, 247, 244, 0.92);
       --shadow-sm: 0 2px 8px rgba(20, 24, 32, 0.04);
       --shadow-md: 0 10px 30px rgba(20, 24, 32, 0.07);
-      --font-serif: 'Asul', serif !important;
-      --font-sans: 'Avenir', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: 'Asul', Georgia, serif;
+      --font-sans: 'Avenir', 'Avenir Next', 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
       --radius: 10px;
       --max-w: 1040px;
@@ -346,7 +350,6 @@
       margin: 0 0 26px;
     }
 
-    /* Hero Section */
     .hero {
       padding-top: 44px;
     }
@@ -500,7 +503,6 @@
       color: var(--ink-muted);
     }
 
-    /* Context & Cards Grid */
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1139,7 +1141,6 @@
         padding: 0 !important;
       }
 
-      /* Mode A: Standalone Formal Letter Print */
       body.print-letter-only section:not(#letters),
       body.print-letter-only .site-footer,
       body.print-letter-only #letters > .eyebrow,
@@ -1161,7 +1162,6 @@
         width: 100% !important;
       }
 
-      /* Mode B: Full Campaign Dossier Print */
       body:not(.print-letter-only) .print-only-header {
         display: block !important;
         border-bottom: 1.5pt solid #000000 !important;
@@ -1262,7 +1262,7 @@
             <option value="0">Schumann</option>
             <option value="1">Fauré</option>
             <option value="2">The Chicken</option>
-            <option value="3">Gonna Fly Now</option>
+            <option value="3">Feeling Good</option>
           </select>
         </div>
 
@@ -1307,7 +1307,7 @@
           <option value="0">Schumann — Symphony No. 3 ("Rhenish")</option>
           <option value="1">Fauré — Requiem, Op. 48</option>
           <option value="2">Pee Wee Ellis — "The Chicken" (Big Band)</option>
-          <option value="3">Bill Conti — "Gonna Fly Now" (Big Band)</option>
+          <option value="3">Nina Simone — "Feeling Good" (Big Band)</option>
         </select>
       </div>
     </div>
@@ -1440,7 +1440,7 @@
 
     
     <section id="ensembles">
-      <p class="eyebrow">Three Ensembles · One Joint Tour</p>
+      <p class="eyebrow">The Ensembles</p>
       <h2>Symphony Orchestra, Chapel Choir &amp; Big Band</h2>
       <p class="lead">
         Bringing all three flagship ensembles together allows Abingdon to perform symphonic masterworks in German concert halls, sacred choral repertoire in historic cathedrals, and high-energy big band sets in open-air town squares.
@@ -1495,7 +1495,7 @@
           <button type="button" class="work-tab active" data-work="0" role="tab" aria-selected="true">Schumann: Symphony No. 3</button>
           <button type="button" class="work-tab" data-work="1" role="tab" aria-selected="false">Fauré: Requiem, Op. 48</button>
           <button type="button" class="work-tab" data-work="2" role="tab" aria-selected="false">Big Band: The Chicken</button>
-          <button type="button" class="work-tab" data-work="3" role="tab" aria-selected="false">Big Band: Gonna Fly Now</button>
+          <button type="button" class="work-tab" data-work="3" role="tab" aria-selected="false">Big Band: Feeling Good</button>
         </div>
 
         <div class="player-header">
@@ -1554,6 +1554,9 @@
         <div style="max-width:520px;">
         </div>
       </div>
+      <p class="lead">
+       If the embedded Google form does not work, click <a href="https://forms.gle/3vtXWwWyg96toSUu6">HERE</a>
+      </p>
     </section>
 
     
@@ -1798,27 +1801,27 @@
           {
             label: "I. Lebhaft",
             subtitle: "I. Lebhaft — E-flat major · Exhilarating opening inspired by the Rhine at Düsseldorf",
-            urls: ["audio/schumann-1.mp3"]
+            urls: ["audio/schumann_1.mp3"]
           },
           {
             label: "II. Scherzo",
             subtitle: "II. Scherzo: Sehr mäßig — C major · Warm Ländler dance depicting river life",
-            urls: ["audio/schumann-2.mp3"]
+            urls: ["audio/schumann_2.mp3"]
           },
           {
             label: "III. Nicht schnell",
             subtitle: "III. Nicht schnell — A-flat major · Intimate pastoral intermezzo for woodwinds and strings",
-            urls: ["audio/schumann-3.mp3"]
+            urls: ["audio/schumann_3.mp3"]
           },
           {
             label: "IV. Feierlich",
             subtitle: "IV. Feierlich — E-flat minor · Solemn trombone chorale inspired by Cologne Cathedral",
-            urls: ["audio/schumann-4.mp3"]
+            urls: ["audio/schumann_4.mp3"]
           },
           {
             label: "V. Lebhaft (Finale)",
             subtitle: "V. Lebhaft — E-flat major · Joyous festival finale celebrating the Rhineland",
-            urls: ["audio/schumann-5.mp3"]
+            urls: ["audio/schumann_5.mp3"]
           }
         ]
       },
@@ -1829,37 +1832,37 @@
           {
             label: "I. Introït et Kyrie",
             subtitle: "I. Introït et Kyrie — D minor · Serene choral prayer over dark strings and organ",
-            urls: ["audio/faure-1.mp3"]
+            urls: ["audio/faure_1.mp3"]
           },
           {
             label: "II. Offertoire",
             subtitle: "II. Offertoire — B minor · Contrapuntal choral dialogue and baritone solo",
-            urls: ["audio/faure-2.mp3"]
+            urls: ["audio/faure_2.mp3"]
           },
           {
             label: "III. Sanctus",
             subtitle: "III. Sanctus — E-flat major · Luminous ascending harp and violin arpeggios",
-            urls: ["audio/faure-3.mp3"]
+            urls: ["audio/faure_3.mp3"]
           },
           {
             label: "IV. Pie Jesu",
             subtitle: "IV. Pie Jesu — B-flat major · Lyrical treble/soprano solo prayer",
-            urls: ["audio/faure-4.mp3"]
+            urls: ["audio/faure_4.mp3"]
           },
           {
             label: "V. Agnus Dei",
             subtitle: "V. Agnus Dei — F major · Flowing orchestral melody and radiant Lux aeterna",
-            urls: ["audio/faure-5.mp3"]
+            urls: ["audio/faure_5.mp3"]
           },
           {
             label: "VI. Libera Me",
             subtitle: "VI. Libera Me — D minor · Dramatic baritone solo and full choir climax",
-            urls: ["audio/faure-6.mp3"]
+            urls: ["audio/faure_6.mp3"]
           },
           {
             label: "VII. In Paradisum",
             subtitle: "VII. In Paradisum — D major · Ethereal choral vision of peace",
-            urls: ["audio/faure-7.mp3"]
+            urls: ["audio/faure_7.mp3"]
           }
         ]
       },
@@ -1869,19 +1872,19 @@
         movements: [
           {
             label: "Full Big Band Chart",
-            subtitle: 'Pee Wee Ellis — "The Chicken" · Classic B-flat jazz-funk big band groove',
-            urls: ["audio/the-chicken.mp3"]
+            subtitle: 'Pee Wee Ellis — "The Chicken"',
+            urls: ["audio/chicken.mp3"]
           }
         ]
       },
       {
         ensemble: "Big Band",
-        title: 'Bill Conti (arr. Big Band) — "Gonna Fly Now" (Theme from Rocky)',
+        title: 'Nina Simone (arr. Big Band) — "Feeling Good" (Theme from Rocky)',
         movements: [
           {
             label: "Full Big Band Chart",
-            subtitle: 'Bill Conti — "Gonna Fly Now" · High-brass fanfare and driving big band finale',
-            urls: ["audio/gonna-fly-now.mp3"]
+            subtitle: 'Nina Simone — "Feeling Good"',
+            urls: ["audio/feel.mp3"]
           }
         ]
       }
@@ -2230,7 +2233,6 @@
             return true;
           })
           .map(r => {
-            /* Email Redaction Guard: Strip any accidental @ string */
             const clean = str => (str || "").includes("@") ? "[Redacted]" : (str || "").trim();
             return {
               name: clean(r[0]) || "Anonymous Musician",
