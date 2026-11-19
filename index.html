@@ -1,1 +1,2445 @@
-Website building in progress. Contact savethetour@gmail.com for queries.
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Save the 2027 Germany Music Tour | Abingdon School</title>
+  <meta name="description" content="Abingdon School student-led petition asking Senior Leadership to reinstate the Summer 2027 Germany Music Tour for Symphony Orchestra, Chapel Choir, and Big Band." />
+  <link rel="canonical" href="https://savethetour.de/" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23D81B60'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='34' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Save the 2027 Germany Music Tour · Abingdon School" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:url" content="https://savethetour.de/" />
+  <meta property="og:title" content="Save the 2027 Germany Music Tour | Abingdon School Petition" />
+  <meta property="og:description" content="A petition asking Senior Leadership to reinstate the Summer 2027 Germany Music Tour for Symphony Orchestra, Chapel Choir, and Big Band." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=1200&h=630&q=85" />
+  <meta property="og:image:secure_url" content="https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=1200&h=630&q=85" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Symphony orchestra performing in a European concert hall" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Save the 2027 Germany Music Tour | Abingdon School Petition" />
+  <meta name="twitter:description" content="Verified @abingdon.org.uk petition for Abingdon's Symphony Orchestra, Chapel Choir, and Big Band." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=1200&h=630&q=85" />
+  <meta name="twitter:image:alt" content="Symphony orchestra performing in a European concert hall" />
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Avenir:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Asul:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #F8F7F4;
+      --surface: #FFFFFF;
+      --surface-subtle: #F1EFEA;
+      --ink: #141820;
+      --ink-muted: #525B6C;
+      --border: #E2DFD7;
+      --border-strong: #C9C4B8;
+      --cerise: #D81B60;
+      --cerise-hover: #B8144F;
+      --cerise-soft: rgba(216, 27, 96, 0.08);
+      --brass: #B8860B;
+      --brass-soft: rgba(184, 134, 11, 0.11);
+      --header-bg: rgba(248, 247, 244, 0.92);
+      --shadow-sm: 0 2px 8px rgba(20, 24, 32, 0.04);
+      --shadow-md: 0 10px 30px rgba(20, 24, 32, 0.07);
+      --font-serif: 'Asul', serif;
+      --font-sans: 'Avenir', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --radius: 10px;
+      --max-w: 1040px;
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0F1218;
+      --surface: #171C26;
+      --surface-subtle: #1F2633;
+      --ink: #F1F3F5;
+      --ink-muted: #A1AAB8;
+      --border: #2A3242;
+      --border-strong: #3C475C;
+      --cerise: #F04E86;
+      --cerise-hover: #FF6B9E;
+      --cerise-soft: rgba(240, 78, 134, 0.14);
+      --brass: #E0B446;
+      --brass-soft: rgba(224, 180, 70, 0.14);
+      --header-bg: rgba(15, 18, 24, 0.92);
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      overflow-wrap: anywhere;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: var(--font-sans);
+      color: inherit;
+    }
+
+    /* Sticky Top Navigation & Mini Player */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: var(--header-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    .header-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 10px max(18px, env(safe-area-inset-left, 18px)) 10px max(18px, env(safe-area-inset-right, 18px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--cerise);
+      flex-shrink: 0;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    .desktop-nav a {
+      padding: 6px 2px;
+      transition: color 0.15s ease;
+    }
+
+    .desktop-nav a:hover {
+      color: var(--ink);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mini-player {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 12px 4px 6px;
+      min-height: 40px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mini-play-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: var(--cerise);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .mini-play-btn:hover {
+      background: var(--cerise-hover);
+    }
+
+    .mini-track-select {
+      border: none;
+      background: transparent;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink);
+      max-width: 175px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .icon-btn {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--border-strong);
+      background: var(--surface-subtle);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    .tablet-subnav {
+      display: none;
+      border-top: 1px solid var(--border);
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 6px 18px;
+      gap: 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    .mobile-drawer {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 14px 18px 18px;
+    }
+
+    .mobile-drawer.open {
+      display: block;
+    }
+
+    .mobile-drawer-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .mobile-drawer-links a {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      background: var(--bg);
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 max(20px, env(safe-area-inset-left, 20px)) 0 max(20px, env(safe-area-inset-right, 20px));
+    }
+
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cerise);
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.1rem, 4.4vw, 3.35rem);
+      line-height: 1.12;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin: 0 0 18px;
+    }
+
+    h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.65rem, 3vw, 2.25rem);
+      line-height: 1.2;
+      font-weight: 700;
+      margin: 0 0 14px;
+    }
+
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .lead {
+      font-size: clamp(1.02rem, 1.5vw, 1.15rem);
+      color: var(--ink-muted);
+      max-width: 72ch;
+      margin: 0 0 26px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding-top: 44px;
+    }
+
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn:hover {
+      background: var(--surface-subtle);
+      border-color: var(--ink-muted);
+    }
+
+    .btn-primary {
+      background: var(--cerise);
+      border-color: var(--cerise);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: var(--cerise-hover);
+      border-color: var(--cerise-hover);
+    }
+
+    .hero-media {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 16 / 7;
+      background: var(--surface-subtle);
+      margin-bottom: 28px;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 16px;
+      background: linear-gradient(to top, rgba(15, 18, 24, 0.84), rgba(15, 18, 24, 0));
+      color: #F8F7F4;
+      font-size: 12.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .counter-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .counter-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .counter-main {
+      font-family: var(--font-mono);
+      font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+      font-weight: 600;
+    }
+
+    .counter-main span {
+      color: var(--cerise);
+    }
+
+    .counter-pct {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--surface-subtle);
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cerise), var(--brass));
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .ensemble-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-box {
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .stat-num {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    /* Context & Cards Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: var(--cerise-soft);
+      color: var(--cerise);
+      margin-bottom: 12px;
+    }
+
+    .badge-brass {
+      background: var(--brass-soft);
+      color: var(--brass);
+    }
+
+    .case-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .case-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .case-num {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--cerise);
+      padding-top: 3px;
+    }
+
+    .case-row p {
+      margin: 0;
+      color: var(--ink-muted);
+    }
+
+    .ensemble-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ensemble-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: var(--surface-subtle);
+    }
+
+    .ensemble-card-body {
+      padding: 18px 20px 20px;
+      flex: 1;
+    }
+
+    .ensemble-card-body p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--ink-muted);
+    }
+
+    .listening-room {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .work-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .work-tab {
+      min-height: 44px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .work-tab.active {
+      background: var(--cerise);
+      border-color: var(--cerise);
+      color: #FFFFFF;
+    }
+
+    .player-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .play-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: var(--cerise);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease;
+    }
+
+    .play-circle:hover {
+      background: var(--cerise-hover);
+    }
+
+    .scrubber-wrap {
+      margin-bottom: 18px;
+    }
+
+    .scrubber-hitzone {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      touch-action: none;
+    }
+
+    .scrubber-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--surface-subtle);
+      border-radius: 999px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scrubber-progress {
+      height: 100%;
+      width: 0%;
+      background: var(--cerise);
+      border-radius: 999px;
+    }
+
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .movement-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mvt-btn {
+      min-height: 40px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .mvt-btn.active {
+      border-color: var(--cerise);
+      background: var(--cerise-soft);
+      color: var(--cerise);
+      font-weight: 600;
+    }
+
+    .privacy-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: var(--radius);
+      background: var(--cerise-soft);
+      border: 1px solid rgba(216, 27, 96, 0.25);
+      margin-bottom: 22px;
+    }
+
+    .form-frame-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .form-frame-box iframe {
+      width: 100%;
+      height: 760px;
+      border: 0;
+      display: block;
+    }
+
+    .wall-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .input-field {
+      min-height: 44px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .wall-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    .wall-empty {
+      grid-column: 1 / -1;
+      padding: 32px 20px;
+      text-align: center;
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius);
+      color: var(--ink-muted);
+      background: var(--surface);
+    }
+
+    .supporter-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .supporter-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .supporter-name {
+      font-weight: 600;
+      font-size: 14.5px;
+    }
+
+    .supporter-meta {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--cerise);
+    }
+
+    .supporter-note {
+      margin: 6px 0 0;
+      font-size: 13.5px;
+      color: var(--ink-muted);
+    }
+
+    .letter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .personaliser-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field-group label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+
+    .letter-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #formal-letter-sheet {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: 44px 48px;
+      box-shadow: var(--shadow-md);
+      max-width: 780px;
+      margin: 0 auto;
+      font-family: var(--font-sans);
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+
+    .letter-sender-block {
+      text-align: right;
+      margin-bottom: 24px;
+      color: var(--ink-muted);
+      font-size: 14px;
+    }
+
+    .letter-recipient-block {
+      margin-bottom: 22px;
+      font-size: 14.5px;
+    }
+
+    .letter-subject {
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .letter-body p {
+      margin: 0 0 14px;
+      text-align: justify;
+    }
+
+    .letter-signoff {
+      margin-top: 24px;
+    }
+
+    .letter-sig-space {
+      height: 44px;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    details.faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 10px;
+    }
+
+    details.faq-item summary {
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      min-height: 28px;
+    }
+
+    details.faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.faq-item p {
+      margin: 12px 0 0;
+      color: var(--ink-muted);
+      font-size: 15px;
+    }
+
+    .site-footer {
+      padding: 36px 0 calc(44px + env(safe-area-inset-bottom, 0px));
+      border-top: 1px solid var(--border);
+      color: var(--ink-muted);
+      font-size: 13.5px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .mobile-float-bar {
+      display: none;
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      z-index: 85;
+      background: var(--header-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 6px;
+      box-shadow: var(--shadow-md);
+      gap: 8px;
+    }
+
+    .mobile-float-bar.hidden-on-sign {
+      display: none !important;
+    }
+
+    .mobile-float-bar button,
+    .mobile-float-bar a {
+      flex: 1;
+      min-height: 44px;
+      border-radius: 999px;
+      font-size: 13.5px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: calc(74px + env(safe-area-inset-bottom, 0px));
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink);
+      color: var(--bg);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 13.5px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 120;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .print-only-header,
+    .print-only-footer {
+      display: none;
+    }
+
+    @media (max-width: 1024px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .tablet-subnav {
+        display: flex;
+      }
+
+      input, select, textarea {
+        font-size: 16px !important;
+      }
+
+      .hero-media {
+        aspect-ratio: 16 / 8;
+      }
+
+      .grid-3, .timeline-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      #formal-letter-sheet {
+        padding: 34px 36px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .tablet-subnav,
+      .mini-track-select {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-top: 28px;
+      }
+
+      section {
+        padding: 40px 0;
+      }
+
+      .hero-media {
+        aspect-ratio: 16 / 9;
+      }
+
+      .quick-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .quick-actions .btn-primary {
+        grid-column: 1 / -1;
+      }
+
+      .ensemble-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid-2, .grid-3, .timeline-grid, .personaliser-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .case-row {
+        grid-template-columns: 40px 1fr;
+        gap: 10px;
+      }
+
+      #formal-letter-sheet {
+        padding: 22px 18px;
+      }
+
+      .mobile-float-bar {
+        display: flex;
+      }
+
+      .site-footer {
+        padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 20mm;
+      }
+
+      html, body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      * {
+        font-family: 'Lato', sans-serif !important;
+        font-size: 12pt !important;
+        line-height: 1.5 !important;
+        color: #000000 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+
+      .site-header,
+      .mobile-float-bar,
+      .quick-actions,
+      .listening-room,
+      #programme,
+      .work-tabs,
+      .letter-tabs,
+      .personaliser-grid,
+      .letter-actions,
+      .wall-controls,
+      .toast,
+      .icon-btn,
+      .btn {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+
+      /* Mode A: Standalone Formal Letter Print */
+      body.print-letter-only section:not(#letters),
+      body.print-letter-only .site-footer,
+      body.print-letter-only #letters > .eyebrow,
+      body.print-letter-only #letters > h2,
+      body.print-letter-only #letters > .lead {
+        display: none !important;
+      }
+
+      body.print-letter-only #letters {
+        padding: 0 !important;
+        border: none !important;
+      }
+
+      body.print-letter-only #formal-letter-sheet {
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      /* Mode B: Full Campaign Dossier Print */
+      body:not(.print-letter-only) .print-only-header {
+        display: block !important;
+        border-bottom: 1.5pt solid #000000 !important;
+        padding-bottom: 8pt !important;
+        margin-bottom: 16pt !important;
+        text-align: center !important;
+        font-weight: bold !important;
+      }
+
+      body:not(.print-letter-only) .print-only-footer {
+        display: block !important;
+        border-top: 1pt solid #000000 !important;
+        padding-top: 8pt !important;
+        margin-top: 18pt !important;
+        text-align: center !important;
+      }
+
+      body:not(.print-letter-only) h1 {
+        font-size: 18pt !important;
+        font-weight: bold !important;
+        margin-bottom: 8pt !important;
+      }
+
+      body:not(.print-letter-only) h2 {
+        font-size: 14pt !important;
+        font-weight: bold !important;
+        margin-bottom: 6pt !important;
+        page-break-after: avoid !important;
+      }
+
+      body:not(.print-letter-only) h3,
+      body:not(.print-letter-only) .letter-subject {
+        font-size: 12pt !important;
+        font-weight: bold !important;
+      }
+
+      section {
+        padding: 12pt 0 !important;
+        border-bottom: 0.75pt solid #000000 !important;
+      }
+
+      .card, .counter-card, .case-row, .ensemble-card, #formal-letter-sheet, details.faq-item {
+        border: 0.75pt solid #000000 !important;
+        padding: 10pt !important;
+        margin-bottom: 10pt !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .hero-media, .ensemble-card img {
+        max-height: 180pt !important;
+        border: 0.75pt solid #000000 !important;
+      }
+
+      .form-frame-box iframe {
+        display: none !important;
+      }
+
+      .form-frame-box::after {
+        content: "Online Verification Portal: Sign with your @abingdon.org.uk Google account at https://savethetour.de/#sign";
+        display: block;
+        font-weight: bold;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <div class="print-only-header">
+    Abingdon School · Independent Petition · https://savethetour.de
+  </div>
+
+  
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#top" class="brand-link" aria-label="Abingdon Music | Save The Tour | Home">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Save The Tour</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary sections">
+        <a href="#context">Context</a>
+        <a href="#case">The Case</a>
+        <a href="#ensembles">Ensembles</a>
+        <a href="#programme">Music</a>
+        <a href="#sign">Sign</a>
+        <a href="#wall">Supporters</a>
+        <a href="#letters">Letters</a>
+      </nav>
+
+      <div class="header-controls">
+        <div class="mini-player" role="region" aria-label="Programme audio mini-player">
+          <button type="button" class="mini-play-btn" id="mini-play-btn" aria-label="Play or pause programme recording">
+            <svg id="mini-play-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6,4 20,12 6,20"></polygon></svg>
+          </button>
+          <select id="mini-work-select" class="mini-track-select" aria-label="Select programme piece">
+            <option value="0">Schumann</option>
+            <option value="1">Fauré</option>
+            <option value="2">The Chicken</option>
+            <option value="3">Gonna Fly Now</option>
+          </select>
+        </div>
+
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch colour theme">
+          <span id="theme-icon" aria-hidden="true">☾</span>
+          <span id="theme-label">Dark</span>
+        </button>
+
+        <button type="button" class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Open menu">
+          Menu
+        </button>
+      </div>
+    </div>
+
+    
+    <nav class="tablet-subnav" aria-label="Tablet sections">
+      <a href="#context">Context</a>
+      <a href="#case">The Case</a>
+      <a href="#ensembles">Ensembles</a>
+      <a href="#programme">Programme Audio</a>
+      <a href="#sign">Sign Petition</a>
+      <a href="#wall">Supporter Wall</a>
+      <a href="#letters">Printable Letters</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="mobile-drawer-links">
+        <a href="#context" class="drawer-link">Context</a>
+        <a href="#case" class="drawer-link">The Case</a>
+        <a href="#ensembles" class="drawer-link">Ensembles</a>
+        <a href="#programme" class="drawer-link">Programme Audio</a>
+        <a href="#sign" class="drawer-link">Sign Petition</a>
+        <a href="#wall" class="drawer-link">Supporter Wall</a>
+        <a href="#letters" class="drawer-link">Printable Letters</a>
+        <a href="#faq" class="drawer-link">FAQ</a>
+      </div>
+      <div class="field-group">
+        <label for="drawer-work-select">Programme Recording</label>
+        <select id="drawer-work-select" class="input-field">
+          <option value="0">Schumann — Symphony No. 3 ("Rhenish")</option>
+          <option value="1">Fauré — Requiem, Op. 48</option>
+          <option value="2">Pee Wee Ellis — "The Chicken" (Big Band)</option>
+          <option value="3">Bill Conti — "Gonna Fly Now" (Big Band)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+
+    
+    <section class="hero">
+      <p class="eyebrow">Abingdon School Music</p>
+      <h1>Save the Summer 2027 Germany Music Tour</h1>
+      <p class="lead">
+        A constructive student petition asking Senior Leadership to reconsider the cancellation of the Summer 2027 overseas Music tour and begin the new biennial cycle <em>after</em> 2027.
+      </p>
+
+      <div class="quick-actions">
+        <a href="#sign" class="btn btn-primary">Sign the Petition</a>
+        <button type="button" class="btn" id="whatsapp-share-btn">Share on WhatsApp</button>
+        <button type="button" class="btn" id="copy-link-btn">Copy Link</button>
+        <button type="button" class="btn" id="print-dossier-btn">Print the website</button>
+        <a href="#letters" class="btn">Letter Templates</a>
+      </div>
+
+      <figure class="hero-media">
+        <img
+          src="https://images.pexels.com/photos/27664488/pexels-photo-27664488.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=1400&q=85';"
+          alt="Colonge Cathedral"
+        />
+        <figcaption class="hero-caption">
+          <span>European Concert Hall &amp; Cathedral Tour · Germany, Summer 2027</span>
+          <span>Abingdon School Student Initiative · savethetour.de</span>
+        </figcaption>
+      </figure>
+
+      
+      <div class="counter-card" aria-live="polite">
+        <div class="counter-top">
+          <div class="counter-main"><span id="total-count">0</span> / 100 verified signatures</div>
+          <div class="counter-pct"><span id="progress-pct">0%</span> of student target</div>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar-role">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="ensemble-stats">
+          <div class="stat-box">
+            <span class="stat-num" id="count-orchestra">0</span>
+            <span class="stat-label">Symphony Orchestra</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num" id="count-choir">0</span>
+            <span class="stat-label">Chapel Choir</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num" id="count-bigband">0</span>
+            <span class="stat-label">Big Band</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num" id="count-multiple">0</span>
+            <span class="stat-label">Multiple Ensembles</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="context">
+      <p class="eyebrow">Background &amp; Context</p>
+      <h2>The 16 November 2026 Decision</h2>
+      <p class="lead">
+        Our Music department is fully behind touring. The decision not to proceed in Summer 2027 was taken at School Administration level, which is why our appeal is addressed respectfully to the Headmaster and Senior Leadership.
+      </p>
+
+      <div class="grid-2">
+        <article class="card">
+          <span class="badge">16 Nov 2026</span>
+          <h3>Why the Tour Was Deferred to 2028</h3>
+          <p>
+            In his letter to families on 16 November 2026, the Head Mr. Windsor confirmed that despite a healthy level of parental and pupil interest, the proposed Summer 2027 Germany tour would not proceed. School Leadership has moved most multi-year-group trips to a biennial cycle, proposing the next overseas Music tour for Summer 2028 in order to balance educational visits across school activities and ease organisational workload.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="badge badge-brass"><Thead></Thead> Proposal</span>
+          <h3>Start the Biennial Cycle After 2027</h3>
+          <p>
+            Students and families genuinely appreciate the School's care for staff wellbeing and trip fairness. However, because expressions of interest for Germany 2027 had already been gathered, and because current Upper Sixth Form musicians will have left Abingdon by Summer 2028, we ask Leadership to honour the 2027 tour and run the biennial cycle from 2027 to 2029 instead.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    
+    <section id="case">
+      <p class="eyebrow">The Arguments</p>
+      <h2>Why Reinstating Summer 2027 Matters</h2>
+
+      <div class="case-list">
+        <div class="case-row">
+          <div class="case-num">01</div>
+          <div>
+            <h3>Current Senior Pupils Will Miss Their Only Overseas Tour</h3>
+            <p>
+              Pupils in the Upper Sixth have rehearsed weekly in Symphony Orchestra, Chapel Choir, and Big Band. Deferring the tour from 2027 to 2028 means some senior leaders, section principals leave Abingdon without ever representing the School musically abroad.
+            </p>
+          </div>
+        </div>
+
+        <div class="case-row">
+          <div class="case-num">02</div>
+          <div>
+            <h3>A Fair Biennial Compromise: 2027 &rarr; 2029</h3>
+            <p>
+              We fully support a sustainable biennial rhythm for overseas trips. Honoring the already-announced Summer 2027 Germany tour, where healthy family demand is already proven; and scheduling the following overseas Music tour for Summer 2029 preserves the exact two-year cycle without penalising the cohort that signed up in good faith.
+            </p>
+          </div>
+        </div>
+
+        <div class="case-row">
+          <div class="case-num">03</div>
+          <div>
+            <h3>Easing Organiser Workload Through Practical Support</h3>
+            <p>
+              Whilst the Music department is in charge of concerts, external specialist tour operators handle transport, venues, accommodation, and risk-assessment logistics, and Sixth Form pupils can assist with repertoire packs, stage management, and tour administration under staff supervision.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="ensembles">
+      <p class="eyebrow">Three Ensembles · One Joint Tour</p>
+      <h2>Symphony Orchestra, Chapel Choir &amp; Big Band</h2>
+      <p class="lead">
+        Bringing all three flagship ensembles together allows Abingdon to perform symphonic masterworks in German concert halls, sacred choral repertoire in historic cathedrals, and high-energy big band sets in open-air town squares.
+      </p>
+
+      <div class="grid-3">
+        <article class="ensemble-card">
+          <img
+            src="https://www.abingdon.org.uk/wp-content/uploads/2026/11/BenedictTufnellAbingdon20261089.jpg"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=900&q=80';"
+            alt="String and wind players of a symphony orchestra in concert"
+          />
+          <div class="ensemble-card-body">
+            <h3>Symphony Orchestra</h3>
+            <p>Performing Robert Schumann's Symphony No. 3 ("Rhenish") in the very Rhineland cities that inspired its five movements.</p>
+          </div>
+        </article>
+
+        <article class="ensemble-card">
+          <img
+            src="https://www.abingdon.org.uk/wp-content/uploads/2026/05/IMG_8126.jpg"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=900&q=80';"
+            alt="Choral singers performing sacred repertoire in a resonant stone church"
+          />
+          <div class="ensemble-card-body">
+            <h3>Chapel Choir</h3>
+            <p>Singing with the orchestra for Fauré's Requiem, alongside unaccompanied Evensong services in Rhineland cathedrals.</p>
+          </div>
+        </article>
+
+        <article class="ensemble-card">
+          <img
+            src="https://www.abingdon.org.uk/wp-content/uploads/2026/04/IMG_6121-scaled.jpg"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?auto=format&fit=crop&w=900&q=80';"
+            alt="Brass and saxophone section performing big band jazz"
+          />
+          <div class="ensemble-card-body">
+            <h3>Big Band</h3>
+            <p>Bringing funk and swing energy to German summer festivals with signature pieces.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    
+    <section id="programme">
+      <p class="eyebrow">The Music</p>
+      <h2>The Listening Room</h2>
+
+      <div class="listening-room">
+        <div class="work-tabs" role="tablist" aria-label="Select musical work">
+          <button type="button" class="work-tab active" data-work="0" role="tab" aria-selected="true">Schumann: Symphony No. 3</button>
+          <button type="button" class="work-tab" data-work="1" role="tab" aria-selected="false">Fauré: Requiem, Op. 48</button>
+          <button type="button" class="work-tab" data-work="2" role="tab" aria-selected="false">Big Band: The Chicken</button>
+          <button type="button" class="work-tab" data-work="3" role="tab" aria-selected="false">Big Band: Gonna Fly Now</button>
+        </div>
+
+        <div class="player-header">
+          <div>
+            <span class="badge" id="player-ensemble-badge">Symphony Orchestra</span>
+            <h3 id="player-work-title">Robert Schumann — Symphony No. 3 in E-flat major, Op. 97 ("Rhenish")</h3>
+            <p id="player-mvt-subtitle" style="margin:0; color:var(--ink-muted); font-size:14.5px;">
+              I. Lebhaft — E-flat major · Exhilarating opening inspired by the Rhine at Düsseldorf
+            </p>
+            <p id="player-status" style="margin:6px 0 0; font-family:var(--font-mono); font-size:12px; color:var(--cerise);">
+              Ready · Real recording stream
+            </p>
+          </div>
+
+          <div class="player-controls">
+            <button type="button" class="play-circle" id="main-play-btn" aria-label="Play or pause selected movement">
+              <svg id="main-play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6,4 20,12 6,20"></polygon></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="scrubber-wrap">
+          <div class="scrubber-hitzone" id="scrubber-hitzone" role="slider" aria-label="Audio seek bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+            <div class="scrubber-bar">
+              <div class="scrubber-progress" id="scrubber-progress"></div>
+            </div>
+          </div>
+          <div class="time-row">
+            <span id="time-current">0:00</span>
+            <span id="time-duration">--:--</span>
+          </div>
+        </div>
+
+        <div class="movement-pills" id="movement-pills" aria-label="Movements and tracks"></div>
+      </div>
+
+      
+      <audio id="programme-audio" preload="none"></audio>
+    </section>
+
+    
+    <section id="sign">
+      <p class="eyebrow">The Petiton</p>
+      <h2>Sign with Your @abingdon.org.uk Account</h2>
+      <p class="lead">
+        To ensure credibility, only current Abingdon School pupils may sign using Google Workspace verification.
+      </p>
+
+      <div class="privacy-banner">
+        <div>
+          <strong>Privacy:</strong> Your <code>@abingdon.org.uk</code> login is verified solely by Google Forms to prevent duplicates or outside entries. This website never receives, stores, or displays your email address. Only your chosen public display name (e.g., <em>First Name + Last Initial</em> or <em>Anonymous Musician</em>), year group, and ensemble appear on the Supporter Wall.
+        </div>
+      </div>
+
+      <div class="form-frame-box" id="form-container">
+        <div style="max-width:520px;">
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="wall">
+      <p class="eyebrow">Verified Signatures</p>
+      <h2>Supporter Wall</h2>
+
+      <div class="wall-controls">
+        <input type="search" id="wall-search" class="input-field" placeholder="Search by name, year, or note..." aria-label="Search supporters" style="flex:1; min-width:210px;" />
+        <select id="wall-filter" class="input-field" aria-label="Filter by ensemble">
+          <option value="ALL">All Ensembles</option>
+          <option value="Symphony Orchestra">Symphony Orchestra</option>
+          <option value="Chapel Choir">Chapel Choir</option>
+          <option value="Big Band">Big Band</option>
+          <option value="Multiple Ensembles">Multiple Ensembles</option>
+        </select>
+        <button type="button" class="btn" id="refresh-wall-btn">Refresh</button>
+      </div>
+
+      <div class="wall-grid" id="wall-grid">
+        <div class="wall-empty">
+          <strong>No verified signatures yet.</strong>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="letters">
+      <p class="eyebrow">Outreach</p>
+      <h2>Formal Letter Templates</h2>
+      <p class="lead">
+        These letters are addressed respectfully to Headmaster Mr Mike Windsor and pastoral staff. Personalise your details below to copy, email, or print a letter.
+      </p>
+
+      <div class="letter-tabs" role="tablist" aria-label="Select letter template">
+        <button type="button" class="work-tab active" data-letter="student" role="tab" aria-selected="true">1. Student Letter to Mr Windsor</button>
+        <button type="button" class="work-tab" data-letter="parent" role="tab" aria-selected="false">2. Parent / Guardian Letter</button>
+        <button type="button" class="work-tab" data-letter="tutor" role="tab" aria-selected="false">3. Form Tutor / Housemaster Note</button>
+      </div>
+
+      <div class="personaliser-grid">
+        <div class="field-group">
+          <label for="sender-name">Your Full Name</label>
+          <input type="text" id="sender-name" class="input-field" placeholder="e.g., Mike Windsor" value="" />
+        </div>
+        <div class="field-group">
+          <label for="sender-role">Year Group &amp; Ensemble (or Parent Info)</label>
+          <input type="text" id="sender-role" class="input-field" placeholder="e.g., Lower Sixth · Symphony Orchestra &amp; Chapel Choir" value="" />
+        </div>
+        <div class="field-group">
+          <label for="sender-house">House / Tutor Group (Optional)</label>
+          <input type="text" id="sender-house" class="input-field" placeholder="e.g., Crescent House" value="" />
+        </div>
+      </div>
+
+      <div class="letter-actions">
+        <button type="button" class="btn btn-primary" id="print-letter-btn">Print / Save Letter as PDF</button>
+        <button type="button" class="btn" id="copy-letter-btn">Copy Letter Text</button>
+        <a href="#" class="btn" id="mailto-letter-btn">Open in Email App</a>
+      </div>
+
+      
+      <article id="formal-letter-sheet" aria-label="Formal letter preview">
+        <div class="letter-sender-block" id="letter-sender-block"></div>
+        <div class="letter-recipient-block" id="letter-recipient-block"></div>
+        <div class="letter-subject" id="letter-subject"></div>
+        <div class="letter-body" id="letter-body"></div>
+        <div class="letter-signoff" id="letter-signoff"></div>
+      </article>
+    </section>
+
+    
+    <section id="faq">
+      <p class="eyebrow">Next Steps &amp; Questions</p>
+      <h2>Timeline &amp; FAQ</h2>
+
+      <div class="timeline-grid" style="margin-bottom:28px;">
+        <div class="card">
+          <span class="badge">Step 01</span>
+          <h3>Gather Signatures</h3>
+          <p style="margin:0; font-size:14px; color:var(--ink-muted);">Collect 100+ signatures from Symphony Orchestra, Chapel Choir, and Big Band pupils.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-brass">Step 02</span>
+          <h3>Parent Follow-Up</h3>
+          <p style="margin:0; font-size:14px; color:var(--ink-muted);">Families who submitted expressions of interest send individual letters to the Headmaster's Office.</p>
+        </div>
+        <div class="card">
+          <span class="badge">Step 03</span>
+          <h3>Student Delegation</h3>
+          <p style="margin:0; font-size:14px; color:var(--ink-muted);">Senior ensemble leaders request a brief, respectful meeting with Mr Windsor to present the verified tally and 2027 &rarr; 2029 proposal.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-brass">Step 04</span>
+          <h3>Tour Confirmation</h3>
+          <p style="margin:0; font-size:14px; color:var(--ink-muted);">Work with tour operators and staff so rehearsals for Germany Summer 2027 can proceed smoothly.</p>
+        </div>
+      </div>
+
+      <details class="faq-item">
+        <summary>Why is this petition restricted to @abingdon.org.uk accounts? <span>+</span></summary>
+        <p>Senior Leadership makes trip decisions based on genuine internal demand from current pupils and fee-paying families. Restricting signatures to verified Google accounts guarantees zero duplicate or outside entries.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How can parents and OAs support the campaign? <span>+</span></summary>
+        <p>Parents and OAs can use Template 2 above to send a polite, direct email or printed letter to Mr Mike Windsor's office (<code>sophie.willis@abingdon.org.uk</code>) expressing their support for keeping Summer 2027 in place before beginning the biennial cycle.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is this campaign respectful of our Music teachers and School Leadership? <span>+</span></summary>
+        <p>Yes. Our Music staff organise nearly 90 concerts a year and wholeheartedly support pupil music-making. This petition is a polite, constructive student request asking Senior Leadership to honour the 2027 cohort before moving to a 2027 &rarr; 2029 biennial schedule.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong><a href="https://savethetour.de/">Save the 2027 Germany Music Tour</a></strong>
+      </div>
+      <div>
+        NOTE: We are not affiliated with the school. Contact <a href="mailto:savethetour@gmail.com">savethetour@gmail.com</a>.
+      </div>
+    </div>
+  </footer>
+
+  
+  <div class="print-only-footer">
+    Printed from https://savethetour.de · Abingdon School Student Music Petition
+  </div>
+
+  
+  <div class="mobile-float-bar" id="mobile-float-bar">
+    <button type="button" class="btn" id="mobile-float-play">Play Music</button>
+    <a href="#sign" class="btn btn-primary">Sign Petition</a>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+
+    const GOOGLE_FORM_EMBED_URL = "https://docs.google.com/forms/d/e/1FAIpQLScNF1AGP5XfFQdrR7sgww6hIrFCRbDnY7LugOu2weKuiYM3Lw/viewform?embedded=true";
+    const GOOGLE_SHEET_CSV_URL  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwacBHU0g-bGBuj04PAnC_tdZN1it_g1tzaWw2AkApTatI4CwYk9uHGY3q1_5FHV7BQu4lG0IQzXQJ/pub?gid=37121646&single=true&output=csv";
+    const SIGNATURE_GOAL        = 100;
+
+
+    const storageHelper = (() => {
+      const memory = {};
+      return {
+        get(key) {
+          try {
+            return window.localStorage.getItem(key);
+          } catch (e) {
+            return Object.prototype.hasOwnProperty.call(memory, key) ? memory[key] : null;
+          }
+        },
+        set(key, val) {
+          memory[key] = val;
+          try {
+            window.localStorage.setItem(key, val);
+          } catch (e) {
+          }
+        }
+      };
+    })();
+
+    function showToast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(el._timer);
+      el._timer = setTimeout(() => el.classList.remove("show"), 2600);
+    }
+
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeIcon   = document.getElementById("theme-icon");
+    const themeLabel  = document.getElementById("theme-label");
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      storageHelper.set("savethetour_theme", theme);
+      if (theme === "dark") {
+        themeIcon.textContent = "☀";
+        themeLabel.textContent = "Light";
+      } else {
+        themeIcon.textContent = "☾";
+        themeLabel.textContent = "Dark";
+      }
+    }
+
+    (() => {
+      const saved = storageHelper.get("savethetour_theme");
+      if (saved === "dark" || saved === "light") {
+        applyTheme(saved);
+      } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        applyTheme("dark");
+      } else {
+        applyTheme("light");
+      }
+    })();
+
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
+
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileDrawer  = document.getElementById("mobile-drawer");
+
+    mobileMenuBtn.addEventListener("click", () => {
+      const isOpen = mobileDrawer.classList.toggle("open");
+      mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
+      mobileMenuBtn.textContent = isOpen ? "Close" : "Menu";
+    });
+
+    document.querySelectorAll(".drawer-link").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileDrawer.classList.remove("open");
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
+        mobileMenuBtn.textContent = "Menu";
+      });
+    });
+
+    const signSection   = document.getElementById("sign");
+    const mobileFloat   = document.getElementById("mobile-float-bar");
+    if ("IntersectionObserver" in window && signSection && mobileFloat) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          mobileFloat.classList.toggle("hidden-on-sign", entry.isIntersecting);
+        });
+      }, { threshold: 0.15 });
+      obs.observe(signSection);
+    }
+
+    const PROGRAMME_WORKS = [
+      {
+        ensemble: "Symphony Orchestra",
+        title: 'Robert Schumann — Symphony No. 3 in E-flat major, Op. 97 ("Rhenish")',
+        movements: [
+          {
+            label: "I. Lebhaft",
+            subtitle: "I. Lebhaft — E-flat major · Exhilarating opening inspired by the Rhine at Düsseldorf",
+            urls: ["audio/schumann-1.mp3"]
+          },
+          {
+            label: "II. Scherzo",
+            subtitle: "II. Scherzo: Sehr mäßig — C major · Warm Ländler dance depicting river life",
+            urls: ["audio/schumann-2.mp3"]
+          },
+          {
+            label: "III. Nicht schnell",
+            subtitle: "III. Nicht schnell — A-flat major · Intimate pastoral intermezzo for woodwinds and strings",
+            urls: ["audio/schumann-3.mp3"]
+          },
+          {
+            label: "IV. Feierlich",
+            subtitle: "IV. Feierlich — E-flat minor · Solemn trombone chorale inspired by Cologne Cathedral",
+            urls: ["audio/schumann-4.mp3"]
+          },
+          {
+            label: "V. Lebhaft (Finale)",
+            subtitle: "V. Lebhaft — E-flat major · Joyous festival finale celebrating the Rhineland",
+            urls: ["audio/schumann-5.mp3"]
+          }
+        ]
+      },
+      {
+        ensemble: "Chapel Choir & Symphony Orchestra",
+        title: "Gabriel Fauré — Requiem in D minor, Op. 48",
+        movements: [
+          {
+            label: "I. Introït et Kyrie",
+            subtitle: "I. Introït et Kyrie — D minor · Serene choral prayer over dark strings and organ",
+            urls: ["audio/faure-1.mp3"]
+          },
+          {
+            label: "II. Offertoire",
+            subtitle: "II. Offertoire — B minor · Contrapuntal choral dialogue and baritone solo",
+            urls: ["audio/faure-2.mp3"]
+          },
+          {
+            label: "III. Sanctus",
+            subtitle: "III. Sanctus — E-flat major · Luminous ascending harp and violin arpeggios",
+            urls: ["audio/faure-3.mp3"]
+          },
+          {
+            label: "IV. Pie Jesu",
+            subtitle: "IV. Pie Jesu — B-flat major · Lyrical treble/soprano solo prayer",
+            urls: ["audio/faure-4.mp3"]
+          },
+          {
+            label: "V. Agnus Dei",
+            subtitle: "V. Agnus Dei — F major · Flowing orchestral melody and radiant Lux aeterna",
+            urls: ["audio/faure-5.mp3"]
+          },
+          {
+            label: "VI. Libera Me",
+            subtitle: "VI. Libera Me — D minor · Dramatic baritone solo and full choir climax",
+            urls: ["audio/faure-6.mp3"]
+          },
+          {
+            label: "VII. In Paradisum",
+            subtitle: "VII. In Paradisum — D major · Ethereal choral vision of peace",
+            urls: ["audio/faure-7.mp3"]
+          }
+        ]
+      },
+      {
+        ensemble: "Big Band",
+        title: 'Pee Wee Ellis (arr. Big Band) — "The Chicken"',
+        movements: [
+          {
+            label: "Full Big Band Chart",
+            subtitle: 'Pee Wee Ellis — "The Chicken" · Classic B-flat jazz-funk big band groove',
+            urls: ["audio/the-chicken.mp3"]
+          }
+        ]
+      },
+      {
+        ensemble: "Big Band",
+        title: 'Bill Conti (arr. Big Band) — "Gonna Fly Now" (Theme from Rocky)',
+        movements: [
+          {
+            label: "Full Big Band Chart",
+            subtitle: 'Bill Conti — "Gonna Fly Now" · High-brass fanfare and driving big band finale',
+            urls: ["audio/gonna-fly-now.mp3"]
+          }
+        ]
+      }
+    ];
+
+    const audioEl         = document.getElementById("programme-audio");
+    const mainPlayBtn     = document.getElementById("main-play-btn");
+    const mainPlayIcon    = document.getElementById("main-play-icon");
+    const miniPlayBtn     = document.getElementById("mini-play-btn");
+    const miniPlayIcon    = document.getElementById("mini-play-icon");
+    const mobileFloatPlay = document.getElementById("mobile-float-play");
+    const miniSelect      = document.getElementById("mini-work-select");
+    const drawerSelect    = document.getElementById("drawer-work-select");
+    const playerBadge     = document.getElementById("player-ensemble-badge");
+    const playerTitle     = document.getElementById("player-work-title");
+    const playerSubtitle  = document.getElementById("player-mvt-subtitle");
+    const playerStatus    = document.getElementById("player-status");
+    const mvtContainer    = document.getElementById("movement-pills");
+    const scrubberZone    = document.getElementById("scrubber-hitzone");
+    const scrubberProg    = document.getElementById("scrubber-progress");
+    const timeCurr        = document.getElementById("time-current");
+    const timeDur         = document.getElementById("time-duration");
+
+    let currentWorkIdx = 0;
+    let currentMvtIdx  = 0;
+    let sourceTryIdx   = 0;
+    let isPlaying      = false;
+
+    const PLAY_SVG  = '<polygon points="6,4 20,12 6,20"></polygon>';
+    const PAUSE_SVG = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+
+    function formatTime(sec) {
+      if (!isFinite(sec) || sec < 0) return "0:00";
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return m + ":" + (s < 10 ? "0" : "") + s;
+    }
+
+    function syncPlayIcons(playing) {
+      isPlaying = playing;
+      mainPlayIcon.innerHTML = playing ? PAUSE_SVG : PLAY_SVG;
+      miniPlayIcon.innerHTML = playing ? PAUSE_SVG : PLAY_SVG;
+      mobileFloatPlay.textContent = playing ? "Pause Music" : "Play Music";
+    }
+
+    function loadTrack(workIdx, mvtIdx, autoPlay) {
+      currentWorkIdx = workIdx;
+      currentMvtIdx  = mvtIdx;
+      sourceTryIdx   = 0;
+
+      const work = PROGRAMME_WORKS[workIdx];
+      const mvt  = work.movements[mvtIdx];
+
+      document.querySelectorAll(".work-tab").forEach(btn => {
+        const active = Number(btn.dataset.work) === workIdx;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-selected", String(active));
+      });
+
+      miniSelect.value   = String(workIdx);
+      drawerSelect.value = String(workIdx);
+
+      playerBadge.textContent    = work.ensemble;
+      playerTitle.textContent    = work.title;
+      playerSubtitle.textContent = mvt.subtitle;
+      scrubberProg.style.width   = "0%";
+      timeCurr.textContent       = "0:00";
+      timeDur.textContent        = "--:--";
+
+      mvtContainer.innerHTML = "";
+      work.movements.forEach((item, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "mvt-btn" + (idx === mvtIdx ? " active" : "");
+        btn.textContent = item.label;
+        btn.addEventListener("click", () => loadTrack(workIdx, idx, true));
+        mvtContainer.appendChild(btn);
+      });
+
+      audioEl.pause();
+      audioEl.src = mvt.urls[0];
+      audioEl.load();
+
+      if (autoPlay) {
+        playerStatus.textContent = "Connecting to audio stream...";
+        const playPromise = audioEl.play();
+        if (playPromise && typeof playPromise.then === "function") {
+          playPromise.then(() => {
+            syncPlayIcons(true);
+            playerStatus.textContent = "Playing recording";
+          }).catch(() => {
+            syncPlayIcons(false);
+            playerStatus.textContent = "Tap Play to start audio stream";
+          });
+        }
+      } else {
+        syncPlayIcons(false);
+        playerStatus.textContent = "Ready";
+      }
+    }
+
+    function togglePlayPause() {
+      if (!audioEl.src) {
+        loadTrack(currentWorkIdx, currentMvtIdx, true);
+        return;
+      }
+      if (audioEl.paused) {
+        playerStatus.textContent = "Connecting to audio stream...";
+        const p = audioEl.play();
+        if (p && typeof p.then === "function") {
+          p.then(() => {
+            syncPlayIcons(true);
+            playerStatus.textContent = "Playing recording";
+          }).catch(() => {
+            syncPlayIcons(false);
+            playerStatus.textContent = "Stream unavailable on this network";
+          });
+        }
+      } else {
+        audioEl.pause();
+        syncPlayIcons(false);
+        playerStatus.textContent = "Paused";
+      }
+    }
+
+    audioEl.addEventListener("error", () => {
+      const mvt = PROGRAMME_WORKS[currentWorkIdx].movements[currentMvtIdx];
+      if (sourceTryIdx + 1 < mvt.urls.length) {
+        sourceTryIdx += 1;
+        playerStatus.textContent = "Switching to backup archival stream...";
+        audioEl.src = mvt.urls[sourceTryIdx];
+        audioEl.load();
+        if (isPlaying) {
+          audioEl.play().catch(() => syncPlayIcons(false));
+        }
+      } else {
+        syncPlayIcons(false);
+        playerStatus.textContent = "Archival stream temporarily unreachable - try another movement or work.";
+      }
+    });
+
+    audioEl.addEventListener("loadedmetadata", () => {
+      timeDur.textContent = formatTime(audioEl.duration);
+    });
+
+    audioEl.addEventListener("timeupdate", () => {
+      if (audioEl.duration > 0) {
+        const pct = (audioEl.currentTime / audioEl.duration) * 100;
+        scrubberProg.style.width = pct + "%";
+        scrubberZone.setAttribute("aria-valuenow", String(Math.round(pct)));
+        timeCurr.textContent = formatTime(audioEl.currentTime);
+        timeDur.textContent  = formatTime(audioEl.duration);
+      }
+    });
+
+    audioEl.addEventListener("ended", () => {
+      const work = PROGRAMME_WORKS[currentWorkIdx];
+      if (currentMvtIdx + 1 < work.movements.length) {
+        loadTrack(currentWorkIdx, currentMvtIdx + 1, true);
+      } else {
+        syncPlayIcons(false);
+        playerStatus.textContent = "Movement finished";
+      }
+    });
+
+    function scrubAtEvent(clientX) {
+      if (!audioEl.duration || !isFinite(audioEl.duration)) return;
+      const rect = scrubberZone.getBoundingClientRect();
+      const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+      audioEl.currentTime = ratio * audioEl.duration;
+    }
+
+    scrubberZone.addEventListener("click", e => scrubAtEvent(e.clientX));
+    scrubberZone.addEventListener("touchstart", e => {
+      if (e.touches && e.touches[0]) scrubAtEvent(e.touches[0].clientX);
+    }, { passive: true });
+
+    mainPlayBtn.addEventListener("click", togglePlayPause);
+    miniPlayBtn.addEventListener("click", togglePlayPause);
+    mobileFloatPlay.addEventListener("click", togglePlayPause);
+
+    document.querySelectorAll(".work-tab[data-work]").forEach(btn => {
+      btn.addEventListener("click", () => loadTrack(Number(btn.dataset.work), 0, true));
+    });
+
+    miniSelect.addEventListener("change", e => loadTrack(Number(e.target.value), 0, true));
+    drawerSelect.addEventListener("change", e => loadTrack(Number(e.target.value), 0, true));
+
+    loadTrack(0, 0, false);
+
+    const formContainer = document.getElementById("form-container");
+    if (GOOGLE_FORM_EMBED_URL && GOOGLE_FORM_EMBED_URL.startsWith("https://")) {
+      formContainer.style.padding = "0";
+      formContainer.innerHTML = `<iframe src="${GOOGLE_FORM_EMBED_URL}" title="Official @abingdon.org.uk Petition Google Form" loading="lazy">Loading…</iframe>`;
+    }
+
+    let verifiedSigners = [];
+
+    function parseCSV(text) {
+      const rows = [];
+      let row = [], val = "", inQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        const next = text[i + 1];
+        if (inQuotes) {
+          if (ch === '"' && next === '"') {
+            val += '"';
+            i++;
+          } else if (ch === '"') {
+            inQuotes = false;
+          } else {
+            val += ch;
+          }
+        } else {
+          if (ch === '"') {
+            inQuotes = true;
+          } else if (ch === ",") {
+            row.push(val.trim());
+            val = "";
+          } else if (ch === "\r" && next === "\n") {
+            row.push(val.trim());
+            rows.push(row);
+            row = [];
+            val = "";
+            i++;
+          } else if (ch === "\n" || ch === "\r") {
+            row.push(val.trim());
+            rows.push(row);
+            row = [];
+            val = "";
+          } else {
+            val += ch;
+          }
+        }
+      }
+      if (val.length > 0 || row.length > 0) {
+        row.push(val.trim());
+        rows.push(row);
+      }
+      return rows;
+    }
+
+    function updateCounters(list) {
+      const total = list.length;
+      let orch = 0, choir = 0, bb = 0, multi = 0;
+
+      list.forEach(item => {
+        const ens = (item.ensemble || "").toLowerCase();
+        if (ens.includes("multiple") || ens.includes("both") || (ens.includes("orchestra") && (ens.includes("choir") || ens.includes("band")))) {
+          multi++;
+        } else if (ens.includes("orchestra")) {
+          orch++;
+        } else if (ens.includes("choir")) {
+          choir++;
+        } else if (ens.includes("big band") || ens.includes("band")) {
+          bb++;
+        } else if (ens) {
+          multi++;
+        }
+      });
+
+      const pct = Math.min(100, Math.round((total / SIGNATURE_GOAL) * 100));
+      document.getElementById("total-count").textContent     = String(total);
+      document.getElementById("progress-pct").textContent    = pct + "%";
+      document.getElementById("progress-fill").style.width   = pct + "%";
+      document.getElementById("progress-bar-role").setAttribute("aria-valuenow", String(total));
+      document.getElementById("count-orchestra").textContent = String(orch);
+      document.getElementById("count-choir").textContent     = String(choir);
+      document.getElementById("count-bigband").textContent   = String(bb);
+      document.getElementById("count-multiple").textContent  = String(multi);
+    }
+
+    function renderSupporterWall() {
+      const grid   = document.getElementById("wall-grid");
+      const query  = document.getElementById("wall-search").value.trim().toLowerCase();
+      const filter = document.getElementById("wall-filter").value;
+
+      const filtered = verifiedSigners.filter(s => {
+        const matchesFilter = filter === "ALL" || (s.ensemble || "").toLowerCase().includes(filter.toLowerCase());
+        const hay = `${s.name} ${s.year} ${s.ensemble} ${s.note}`.toLowerCase();
+        return matchesFilter && (!query || hay.includes(query));
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="wall-empty">
+            <strong>${verifiedSigners.length === 0 ? "No verified signatures synced yet." : "No matching signatures found."}</strong>
+            <p style="margin:6px 0 0; font-size:14px;">${
+              verifiedSigners.length === 0
+                ? "Once the @abingdon.org.uk Google Form and Public_Wall CSV link are connected, verified signatures will appear here automatically."
+                : "Try clearing your search box or selecting All Ensembles."
+            }</p>
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = "";
+      filtered.slice().reverse().forEach(s => {
+        const card = document.createElement("div");
+        card.className = "supporter-item";
+
+        const head = document.createElement("div");
+        head.className = "supporter-head";
+
+        const nameEl = document.createElement("span");
+        nameEl.className = "supporter-name";
+        nameEl.textContent = s.name || "Anonymous Musician";
+
+        const metaEl = document.createElement("span");
+        metaEl.className = "supporter-meta";
+        metaEl.textContent = [s.year, s.ensemble].filter(Boolean).join(" · ");
+
+        head.appendChild(nameEl);
+        head.appendChild(metaEl);
+        card.appendChild(head);
+
+        if (s.note) {
+          const noteEl = document.createElement("p");
+          noteEl.className = "supporter-note";
+          noteEl.textContent = "“" + s.note + "”";
+          card.appendChild(noteEl);
+        }
+
+        grid.appendChild(card);
+      });
+    }
+
+    async function syncPublicWall(notify) {
+      if (!GOOGLE_SHEET_CSV_URL || !GOOGLE_SHEET_CSV_URL.startsWith("https://")) {
+        updateCounters([]);
+        renderSupporterWall();
+        if (notify) showToast("Connect GOOGLE_SHEET_CSV_URL in index.html to sync");
+        return;
+      }
+
+      try {
+        const res = await fetch(GOOGLE_SHEET_CSV_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error("Network error");
+        const csvText = await res.text();
+        const rows = parseCSV(csvText);
+
+        verifiedSigners = rows
+          .filter((r, idx) => {
+            if (!r || r.length === 0 || !r.join("").trim()) return false;
+            if (idx === 0 && /display\s*name|public\s*name|year/i.test(r[0])) return false;
+            return true;
+          })
+          .map(r => {
+            /* Email Redaction Guard: Strip any accidental @ string */
+            const clean = str => (str || "").includes("@") ? "[Redacted]" : (str || "").trim();
+            return {
+              name: clean(r[0]) || "Anonymous Musician",
+              year: clean(r[1]),
+              ensemble: clean(r[2]),
+              note: clean(r[3])
+            };
+          });
+
+        updateCounters(verifiedSigners);
+        renderSupporterWall();
+        if (notify) showToast("Synced " + verifiedSigners.length + " verified signatures");
+      } catch (err) {
+        if (notify) showToast("Could not reach Public_Wall CSV right now");
+      }
+    }
+
+    document.getElementById("wall-search").addEventListener("input", renderSupporterWall);
+    document.getElementById("wall-filter").addEventListener("change", renderSupporterWall);
+    document.getElementById("refresh-wall-btn").addEventListener("click", () => syncPublicWall(true));
+    syncPublicWall(false);
+
+    const LETTER_TEMPLATES = {
+      student: {
+        recipientEmail: "sophie.willis@abingdon.org.uk",
+        recipientLines: [
+          "Mr Michael Windsor",
+          "Headmaster",
+          "Abingdon School",
+          "Park Road, Abingdon",
+          "Oxfordshire, OX14 1DE"
+        ],
+        subject: "RE: Request to Reinstate the Summer 2027 Germany Music Tour",
+        paragraphs: [
+          "Dear Mr Windsor,",
+          "Thank you for writing on 16 November 2026 regarding the proposed Music department tour to Germany in Summer 2027, and for the School's continued support for the concerts staged by Abingdon musicians over the past year.",
+          "I am writing respectfully as a member of Abingdon's musical community to ask the Senior Leadership to reconsider the deferral of the tour to 2028. While we fully appreciate the School's aim of balancing educational visits across activities and moving multi-year-group trips to a sustainable biennial cycle, deferring the already-announced 2027 tour means that some pupils will leave Abingdon without ever having had the opportunity to perform on an overseas Music tour.",
+          "As healthy expressions of interest from families have already been gathered for Germany 2027, we would like to propose a fair compromise: honouring the Summer 2027 Germany tour for our Symphony Orchestra, Chapel Choir, and Big Band, and beginning the new biennial cycle from Summer 2027 to Summer 2029. We are also eager to assist staff with rehearsal packs and tour administration alongside external tour operators to keep organisational demands manageable.",
+          "Thank you very much for taking the time to consider the views of Abingdon's musicians."
+        ]
+      },
+      parent: {
+        recipientEmail: "sophie.willis@abingdon.org.uk",
+        recipientLines: [
+          "Mr Michael Windsor",
+          "Headmaster",
+          "Abingdon School",
+          "Park Road, Abingdon",
+          "Oxfordshire, OX14 1DE"
+        ],
+        subject: "RE: Summer 2027 Music Tour to Germany - Parental Support",
+        paragraphs: [
+          "Dear Mr Windsor,",
+          "Thank you for your letter of 16 November 2026 outlining the School's decision to move multi-year-group trips onto a biennial cycle and defer the overseas Music tour from Summer 2027 to Summer 2028.",
+          "As a parent/guardian of an Abingdon musician, I wanted to share how much our family values the extraordinary musical opportunities at the School, and to express our strong support for reinstating the Summer 2027 tour to Germany. Having already registered our interest earlier this academic year, we were saddened that current pupils in the Symphony Orchestra, Chapel Choir, and Big Band would otherwise miss their final opportunity to represent Abingdon abroad before leaving the School.",
+          "We fully understand the importance of staff workload and maintaining balance across departments. Running the planned Germany tour in Summer 2027 where strong family commitment already exists, and commencing the biennial schedule with the next overseas Music tour in Summer 2029 would achieve both fairness for this cohort and long-term sustainability.",
+          "Thank you for your consideration and for all that you and the Music staff do for the pupils."
+        ]
+      },
+      tutor: {
+        recipientEmail: "",
+        recipientLines: [
+          "Housemaster / Form Tutor",
+          "Abingdon School",
+          "Park Road, Abingdon",
+          "Oxfordshire, OX14 1DE"
+        ],
+        subject: "RE: Student Petition Regarding the Summer 2027 Germany Music Tour",
+        paragraphs: [
+          "Dear Tutor / Housemaster,",
+          "I wanted to let you know briefly about a constructive, student-led petition organised by members of the Symphony Orchestra, Chapel Choir, and Big Band (https://savethetour.de) regarding the Summer 2027 Music tour to Germany.",
+          "Following the Headmaster's letter of 16 November 2026 moving multi-year-group trips to a biennial cycle, pupils are respectfully asking Senior Leadership to honour the already-announced Summer 2027 Germany tour for current senior musicians and begin the biennial cycle from 2027 to 2029. Signatures are strictly verified via @abingdon.org.uk accounts with full respect for staff and leadership.",
+          "Thank you for your ongoing support in House and Tutor time."
+        ]
+      }
+    };
+
+    let activeLetterKey = "student";
+
+    function formatBritishDate() {
+      return new Date().toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+    }
+
+    function renderFormalLetter() {
+      const tpl   = LETTER_TEMPLATES[activeLetterKey];
+      const name  = document.getElementById("sender-name").value.trim() || "[Your Full Name]";
+      const role  = document.getElementById("sender-role").value.trim() || "[Year Group · Ensemble]";
+      const house = document.getElementById("sender-house").value.trim();
+
+      const senderBlock = document.getElementById("letter-sender-block");
+      senderBlock.innerHTML = [
+        name,
+        role,
+        house,
+        "Abingdon School, Park Road, Abingdon, OX14 1DE",
+        formatBritishDate()
+      ].filter(Boolean).map(line => `<div>${escapeHtml(line)}</div>`).join("");
+
+      const recipBlock = document.getElementById("letter-recipient-block");
+      recipBlock.innerHTML = tpl.recipientLines.map(line => `<div>${escapeHtml(line)}</div>`).join("");
+
+      document.getElementById("letter-subject").textContent = tpl.subject;
+
+      const bodyEl = document.getElementById("letter-body");
+      bodyEl.innerHTML = tpl.paragraphs.map(p => `<p>${escapeHtml(p)}</p>`).join("");
+
+      const signoffEl = document.getElementById("letter-signoff");
+      signoffEl.innerHTML = `
+        <div>Yours sincerely,</div>
+        <div class="letter-sig-space"></div>
+        <div><strong>${escapeHtml(name)}</strong></div>
+        <div>${escapeHtml(role)}${house ? " · " + escapeHtml(house) : ""}</div>
+      `;
+
+      const plainText = [
+        name,
+        role,
+        house,
+        "Abingdon School, Park Road, Abingdon, OX14 1DE",
+        formatBritishDate(),
+        "",
+        ...tpl.recipientLines,
+        "",
+        tpl.subject,
+        "",
+        ...tpl.paragraphs,
+        "",
+        "Yours sincerely,",
+        "",
+        name,
+        role + (house ? " · " + house : "")
+      ].filter((v, idx, arr) => !(v === "" && arr[idx - 1] === "")).join("\n");
+
+      const mailtoBtn = document.getElementById("mailto-letter-btn");
+      mailtoBtn.href = `mailto:${encodeURIComponent(tpl.recipientEmail)}?subject=${encodeURIComponent(tpl.subject.replace(/^RE:\s*/i, ""))}&body=${encodeURIComponent(plainText)}`;
+      mailtoBtn.dataset.plainText = plainText;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    document.querySelectorAll(".work-tab[data-letter]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeLetterKey = btn.dataset.letter;
+        document.querySelectorAll(".work-tab[data-letter]").forEach(b => {
+          const active = b.dataset.letter === activeLetterKey;
+          b.classList.toggle("active", active);
+          b.setAttribute("aria-selected", String(active));
+        });
+        renderFormalLetter();
+      });
+    });
+
+    ["sender-name", "sender-role", "sender-house"].forEach(id => {
+      document.getElementById(id).addEventListener("input", renderFormalLetter);
+    });
+
+    document.getElementById("copy-letter-btn").addEventListener("click", async () => {
+      const text = document.getElementById("mailto-letter-btn").dataset.plainText || "";
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("Letter copied to clipboard");
+      } catch (e) {
+        showToast("Select and copy the letter text directly");
+      }
+    });
+
+    document.getElementById("print-letter-btn").addEventListener("click", () => {
+      document.body.classList.add("print-letter-only");
+      window.print();
+      setTimeout(() => document.body.classList.remove("print-letter-only"), 500);
+    });
+
+    document.getElementById("print-dossier-btn").addEventListener("click", () => {
+      document.body.classList.remove("print-letter-only");
+      window.print();
+    });
+
+    window.addEventListener("afterprint", () => {
+      document.body.classList.remove("print-letter-only");
+    });
+
+    renderFormalLetter();
+
+    const SHARE_URL  = "https://savethetour.de/";
+    const SHARE_TEXT = "Sign the verified @abingdon.org.uk student petition to save the Summer 2027 Germany Music Tour for Symphony Orchestra, Chapel Choir, and Big Band: https://savethetour.de/";
+
+    document.getElementById("whatsapp-share-btn").addEventListener("click", () => {
+      window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(SHARE_TEXT), "_blank", "noopener");
+    });
+
+    document.getElementById("copy-link-btn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(SHARE_URL);
+        showToast("Copied https://savethetour.de/");
+      } catch (e) {
+        showToast("Share link: https://savethetour.de/");
+      }
+    });
+  </script>
+</body>
+</html>
