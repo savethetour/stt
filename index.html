@@ -1374,7 +1374,7 @@
       <figure class="hero-media">
         <img
           src="https://images.pexels.com/photos/27664488/pexels-photo-27664488.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200"
-          alt="Cologne Cathedral"
+          alt="Colonge Cathedral"
         />
         <figcaption class="hero-caption">
           <span>European Concert Hall &amp; Cathedral Tour · Germany, Summer 2027</span>
@@ -1574,7 +1574,7 @@
 
     
     <section id="sign">
-      <p class="eyebrow">The Petition</p>
+      <p class="eyebrow">The Petiton</p>
       <h2>Sign with Your @abingdon.org.uk Account</h2>
       <p class="lead">
         To ensure credibility, only current Abingdon School pupils may sign using Google Workspace verification.
@@ -1582,7 +1582,7 @@
 
       <div class="privacy-banner">
         <div>
-          <strong>Privacy:</strong> Your <code>@abingdon.org.uk</code> login is verified solely by Google Forms to prevent duplicates or outside entries. This website never receives, stores, or displays your email address. Only your chosen public display name (e.g., <em>First Name + Last Initial</em> or <em>Anonymous Musician</em>), year group, and ensemble appear on the Supporter Wall.
+          <strong>Privacy:</strong> Your <code>@abingdon.org.uk</code> login is verified through Google Forms solely to confirm you are a current Abingdon pupil and to prevent duplicate or outside entries. Your email address, full name, and year group are NOT published on this website. Only the student campaign organiser can view the form responses to verify totals for Senior Leadership. On the public website, only your initials (or "Abingdon Musician"), ensemble, and approved supportive comments are displayed. All form responses will be permanently deleted once the petition is presented.
         </div>
       </div>
       <div class="form-fallback-box" role="region" aria-label="Direct Google Form link">
@@ -1602,7 +1602,7 @@
     
     <section id="wall">
       <p class="eyebrow">Verified Signatures</p>
-      <h2>Supporter Wall</h2>
+      <h2>Supporters</h2>
 
       <div class="wall-controls">
         <input type="search" id="wall-search" class="input-field" placeholder="Search by name, year, or note..." aria-label="Search supporters" style="flex:1; min-width:210px;" />
@@ -2275,10 +2275,10 @@
           .map(r => {
             const clean = str => (str || "").includes("@") ? "[Redacted]" : (str || "").trim();
             return {
-              name: clean(r[0]) || "Anonymous Musician",
-              year: clean(r[1]),
-              ensemble: clean(r[2]),
-              note: clean(r[3])
+              name: clean(r[0]) || "Abingdon Musician",
+              year: "",
+              ensemble: clean(r[1]),
+              note: clean(r[2])
             };
           });
 
