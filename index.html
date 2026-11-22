@@ -2536,6 +2536,12 @@
         showToast("Share link: https://savethetour.de/");
       }
     });
+
+    window.addEventListener("scroll", () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      document.documentElement.style.setProperty("--scroll-pct", pct + "%");
+    }, { passive: true });
   </script>
 </body>
 </html>
