@@ -85,6 +85,8 @@
 
     html {
       scroll-behavior: smooth;
+      scrollbar-gutter: stable;
+      overflow-x: clip;
       -webkit-text-size-adjust: 100%;
     }
 
@@ -105,7 +107,7 @@
       font-family: var(--font-sans);
       font-size: 16px;
       line-height: 1.65;
-      overflow-x: hidden;
+      overflow-x: clip;
       overflow-wrap: anywhere;
       transition: background-color 0.2s ease, color 0.2s ease;
     }
@@ -127,7 +129,6 @@
 
     ::-webkit-scrollbar-thumb:hover {
       background: var(--cerise-hover);
-      border-width: 2px;
     }
 
     ::-webkit-scrollbar-corner {
@@ -206,8 +207,11 @@
       left: 0;
       bottom: -1px;
       height: 2.5px;
-      width: var(--scroll-pct, 0%);
+      width: 100%;
       background: linear-gradient(90deg, var(--cerise), var(--brass));
+      transform: scaleX(var(--scroll-scale, 0));
+      transform-origin: left;
+      will-change: transform;
       pointer-events: none;
     }
 
@@ -232,13 +236,13 @@
       height: 22px;
       width: auto;
       display: block;
-      filter: brightness(0) saturate(100%) invert(53%) sepia(97%) saturate(5761%) hue-rotate(-41deg) brightness(81%) contrast(113%);
+      filter: brightness(0) saturate(100%) invert(50%) sepia(83%) saturate(4869%) hue-rotate(-45deg) brightness(68%) contrast(125%);
       opacity: 1;
       transition: filter 0.2s ease, opacity 0.2s ease;
     }
 
     :root[data-theme="dark"] .brand-wordmark {
-      filter: brightness(0) saturate(100%) invert(80%) sepia(70%) saturate(5761%) hue-rotate(-55deg) brightness(88%) contrast(115%);
+      filter: brightness(0) saturate(100%) invert(52%) sepia(90%) saturate(4869%) hue-rotate(-45deg) brightness(100%) contrast(125%);
       opacity: 1;
     }
 
@@ -933,7 +937,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      min-height: 260px;
+      min-height: 760px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1009,6 +1013,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 14px;
+      min-height: 320px;
     }
 
     .wall-empty {
@@ -2055,11 +2060,22 @@
       if (e.key === "Escape") closeMobileDrawer();
     });
 
+    const siteHeader = document.querySelector(".site-header");
+let scrollTicking = false;
+
     function updateScrollProgress() {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
-      document.documentElement.style.setProperty("--scroll-pct", pct + "%");
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        if (siteHeader) {
+          siteHeader.style.setProperty("--scroll-scale", String(ratio));
+        }
+        scrollTicking = false;
+      });
     }
+
     window.addEventListener("scroll", updateScrollProgress, { passive: true });
     window.addEventListener("resize", updateScrollProgress, { passive: true });
     updateScrollProgress();
@@ -2600,44 +2616,67 @@
       });
     }
 
-    async function syncPublicWall(notify) {
-      if (!GOOGLE_SHEET_CSV_URL || !GOOGLE_SHEET_CSV_URL.startsWith("https://")) {
-        updateCounters([]);
-        renderSupporterWall();
-        if (notify) showToast("Connect GOOGLE_SHEET_CSV_URL in index.html to sync");
-        return;
-      }
+    let isInitialWallSync = true;
+let userScrolledManually = false;
 
-      try {
-        const res = await fetch(GOOGLE_SHEET_CSV_URL, { cache: "no-store" });
-        if (!res.ok) throw new Error("Network error");
-        const csvText = await res.text();
-        const rows = parseCSV(csvText);
+["wheel", "touchstart", "keydown"].forEach(evt => {
+  window.addEventListener(evt, () => { userScrolledManually = true; }, { passive: true, once: true });
+});
 
-        verifiedSigners = rows
-          .filter((r, idx) => {
-            if (!r || r.length === 0 || !r.join("").trim()) return false;
-            if (idx === 0 && /display\s*name|public\s*name|year/i.test(r[0])) return false;
-            return true;
-          })
-          .map(r => {
-            const clean = str => (str || "").includes("@") ? "[Redacted]" : (str || "").trim();
-            return {
-              name: clean(r[0]) || "Abingdon Musician",
-              year: "",
-              ensemble: clean(r[1]),
-              note: clean(r[2])
-            };
-          });
+function realignInitialHash() {
+  if (!isInitialWallSync) return;
+  isInitialWallSync = false;
 
-        updateCounters(verifiedSigners);
-        renderSupporterWall();
-        if (notify) showToast("Synced " + verifiedSigners.length + " verified signatures");
-      } catch (err) {
-        renderSupporterWall();
-        if (notify) showToast("Could not reach Public_Wall CSV right now");
-      }
+  if (!window.location.hash || userScrolledManually) return;
+  const target = document.querySelector(window.location.hash);
+  if (target) {
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "instant", block: "start" });
+    });
+  }
+}
+
+  async function syncPublicWall(notify) {
+    if (!GOOGLE_SHEET_CSV_URL || !GOOGLE_SHEET_CSV_URL.startsWith("https://")) {
+      updateCounters([]);
+      renderSupporterWall();
+      realignInitialHash();
+      if (notify) showToast("Connect GOOGLE_SHEET_CSV_URL in index.html to sync");
+      return;
     }
+
+    try {
+      const res = await fetch(GOOGLE_SHEET_CSV_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("Network error");
+      const csvText = await res.text();
+      const rows = parseCSV(csvText);
+
+      verifiedSigners = rows
+        .filter((r, idx) => {
+          if (!r || r.length === 0 || !r.join("").trim()) return false;
+          if (idx === 0 && /display\s*name|public\s*name|year/i.test(r[0])) return false;
+          return true;
+        })
+        .map(r => {
+          const clean = str => (str || "").includes("@") ? "[Redacted]" : (str || "").trim();
+          return {
+            name: clean(r[0]) || "Abingdon Musician",
+            year: "",
+            ensemble: clean(r[1]),
+            note: clean(r[2])
+          };
+        });
+
+      updateCounters(verifiedSigners);
+      renderSupporterWall();
+      if (notify) showToast("Synced " + verifiedSigners.length + " verified signatures");
+    } catch (err) {
+      renderSupporterWall();
+      if (notify) showToast("Could not reach Public_Wall CSV right now");
+    } finally {
+      realignInitialHash();
+    }
+  }
 
     document.getElementById("wall-search").addEventListener("input", renderSupporterWall);
     document.getElementById("wall-filter").addEventListener("change", renderSupporterWall);
