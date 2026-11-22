@@ -986,6 +986,93 @@
       white-space: nowrap;
     }
 
+    .post-sign-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 14px 18px;
+      margin-top: 12px;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .post-sign-bar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .post-sign-bar .btn {
+      min-height: 38px;
+      padding: 7px 14px;
+      font-size: 13px;
+    }
+
+    .wall-status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    .cycle-table-wrap {
+      margin-top: 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cycle-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14.5px;
+    }
+
+    .cycle-table th,
+    .cycle-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .cycle-table thead th {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      background: var(--surface-subtle);
+    }
+
+    .cycle-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cycle-table tr.row-highlight {
+      background: var(--cerise-soft);
+    }
+
+    .cycle-table tr.row-highlight td:first-child {
+      font-weight: 700;
+      color: var(--cerise);
+    }
+
+    .print-repertoire-list {
+      display: none;
+    }
+
     .wall-controls {
       display: flex;
       flex-wrap: wrap;
@@ -1360,8 +1447,21 @@
         gap: 10px;
       }
 
-      .form-fallback-box .btn-primary {
+      .form-fallback-box .btn-primary,
+      .post-sign-bar-actions {
         width: 100%;
+      }
+
+      .post-sign-bar-actions .btn {
+        flex: 1;
+      }
+
+      .form-frame-box {
+        min-height: 880px;
+      }
+
+      .form-frame-box iframe {
+        height: 880px;
       }
 
       #formal-letter-sheet {
@@ -1404,17 +1504,38 @@
       .mobile-float-bar,
       .quick-actions,
       .listening-room,
-      #programme,
       .work-tabs,
       .letter-tabs,
       .personaliser-grid,
       .letter-actions,
       .wall-controls,
       .form-fallback-box,
+      .post-sign-bar,
       .toast,
       .icon-btn,
       .btn {
         display: none !important;
+      }
+
+      .print-repertoire-list {
+        display: block !important;
+        margin-top: 6pt !important;
+      }
+
+      .print-repertoire-list li {
+        margin-bottom: 4pt !important;
+      }
+
+      .cycle-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin-top: 8pt !important;
+      }
+
+      .cycle-table th,
+      .cycle-table td {
+        border: 0.75pt solid #000000 !important;
+        padding: 6pt 8pt !important;
       }
 
       .container {
@@ -1518,7 +1639,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="#top" class="brand-link" aria-label="Abingdon Music | Save The Tour | Home">
-        <img src="stt wordmark.svg" alt="Save The Tour" class="brand-wordmark" />
+        <img src="stt wordmark.svg" alt="Save The Tour" class="brand-wordmark" width="148" height="22" />
       </a>
 
       <nav class="desktop-nav" aria-label="Primary sections">
@@ -1652,7 +1773,7 @@
       <p class="eyebrow">Background &amp; Context</p>
       <h2>The 16 November 2026 Decision</h2>
       <p class="lead">
-        Our Music department is fully behind touring. The decision not to proceed in Summer 2027 was taken at School Administration level, which is why our appeal is addressed respectfully to the Headmaster and Senior Leadership.
+        Our Music department is fully behind touring. The decision not to proceed in Summer 2027 was taken at School Administration level, which is why our appeal is addressed respectfully to the Head and Senior Leadership.
       </p>
 
       <div class="grid-2">
@@ -1660,7 +1781,7 @@
           <span class="badge">16 Nov 2026</span>
           <h3>Why the Tour Was Deferred to 2028</h3>
           <p>
-            In his letter to families on 16 November 2026, the Head Mr. Windsor confirmed that despite a healthy level of parental and pupil interest, the proposed Summer 2027 Germany tour would not proceed. School Leadership has moved most multi-year-group trips to a biennial cycle, proposing the next overseas Music tour for Summer 2028 in order to balance educational visits across school activities and ease organisational workload.
+            In his letter to families on 16 November 2026, the Head, Mr Windsor, confirmed that despite a healthy level of parental and pupil interest, the proposed Summer 2027 Germany tour would not proceed. School Leadership has moved most multi-year-group trips to a biennial cycle, proposing the next overseas Music tour for Summer 2028 in order to balance educational visits across school activities and ease organisational workload.
           </p>
         </article>
 
@@ -1672,6 +1793,33 @@
           </p>
         </article>
       </div>
+
+      <div class="cycle-table-wrap" role="region" aria-label="Comparison of tour scheduling options">
+        <table class="cycle-table">
+          <thead>
+            <tr>
+              <th>Scheduling Option</th>
+              <th>Overseas Music Tours</th>
+              <th>Cycle Rhythm</th>
+              <th>Impact on Current Musicians</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Current Deferral</td>
+              <td>Summer 2028, Summer 2030</td>
+              <td>2-year cycle (starts 2028)</td>
+              <td>Current Upper Sixth leave without a tour; Fifth Year face GCSEs in 2028</td>
+            </tr>
+            <tr class="row-highlight">
+              <td>Student Compromise</td>
+              <td>Summer 2027, Summer 2029, Summer 2031</td>
+              <td>Exact 2-year cycle (starts 2027)</td>
+              <td>Honours existing 2027 family sign-ups, then locks in a strict biennial rhythm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section id="case">
@@ -1682,9 +1830,9 @@
         <div class="case-row">
           <div class="case-num">01</div>
           <div>
-            <h3>Current Senior Pupils Will Miss Their Only Overseas Tour</h3>
+            <h3>Current Senior &amp; Exam-Year Pupils Will Miss Out</h3>
             <p>
-              Pupils in the Upper Sixth have rehearsed weekly in Symphony Orchestra, Chapel Choir, and Big Band. Deferring the tour from 2027 to 2028 means some senior leaders and section principals leave Abingdon without ever representing the School musically abroad.
+              Pupils across the Upper Sixth, Lower Sixth, and Fifth Year rehearse weekly in Symphony Orchestra, Chapel Choir, and Big Band. Deferring the tour from 2027 to 2028 means Upper Sixth section principals and choir leads leave Abingdon without ever representing the School musically abroad, while current Fourth Years face GCSE public examinations in Summer 2028.
             </p>
           </div>
         </div>
@@ -1694,7 +1842,7 @@
           <div>
             <h3>A Fair Biennial Compromise: 2027 &rarr; 2029</h3>
             <p>
-              We fully support a sustainable biennial rhythm for overseas trips. Honoring the already-announced Summer 2027 Germany tour, where healthy family demand is already proven, and scheduling the following overseas Music tour for Summer 2029 preserves the exact two-year cycle without penalising the cohort that signed up in good faith.
+              We fully support a sustainable biennial rhythm for overseas trips. Honouring the already-announced Summer 2027 Germany tour, where healthy family demand is already proven, and scheduling the following overseas Music tour for Summer 2029 preserves the exact two-year cycle without penalising the cohort that signed up in good faith.
             </p>
           </div>
         </div>
@@ -1723,6 +1871,8 @@
           <img
             src="https://www.abingdon.org.uk/wp-content/uploads/2026/11/BenedictTufnellAbingdon20261089.jpg"
             alt="String and wind players of a symphony orchestra in concert"
+            width="800"
+            height="500"
             loading="lazy"
             decoding="async"
           />
@@ -1736,6 +1886,8 @@
           <img
             src="https://www.abingdon.org.uk/wp-content/uploads/2026/05/IMG_8126.jpg"
             alt="Choral singers performing sacred repertoire in a resonant stone church"
+            width="800"
+            height="500"
             loading="lazy"
             decoding="async"
           />
@@ -1749,6 +1901,8 @@
           <img
             src="https://www.abingdon.org.uk/wp-content/uploads/2026/04/IMG_6121.jpg"
             alt="Brass and saxophone section performing big band jazz"
+            width="800"
+            height="500"
             loading="lazy"
             decoding="async"
           />
@@ -1780,7 +1934,7 @@
               I. Lebhaft — E-flat major · Exhilarating opening inspired by the Rhine at Düsseldorf
             </p>
             <p id="player-status" style="margin:6px 0 0; font-family:var(--font-mono); font-size:12px; color:var(--cerise);">
-              Ready · Real recording stream
+              Ready · Tour programme recording
             </p>
           </div>
 
@@ -1806,6 +1960,12 @@
         <div class="movement-pills" id="movement-pills" aria-label="Movements and tracks"></div>
       </div>
 
+      <ul class="print-repertoire-list">
+        <li><strong>Symphony Orchestra:</strong> Robert Schumann — Symphony No. 3 in E-flat major, Op. 97 ("Rhenish")</li>
+        <li><strong>Chapel Choir:</strong> Gabriel Fauré — Requiem in D minor, Op. 48 &amp; Cathedral Evensong repertoire</li>
+        <li><strong>Big Band:</strong> Pee Wee Ellis — "The Chicken" &amp; Nina Simone — "Feeling Good"</li>
+      </ul>
+
       <audio id="programme-audio" preload="none"></audio>
     </section>
 
@@ -1813,7 +1973,7 @@
       <p class="eyebrow">The Petition</p>
       <h2>Sign with Your @abingdon.org.uk Account</h2>
       <p class="lead">
-        To ensure credibility, only current Abingdon School pupils may sign using Google Workspace verification.
+        To ensure credibility, only current Abingdon School pupils may sign the petition using Google Forms.
       </p>
 
       <div class="privacy-banner">
@@ -1829,11 +1989,19 @@
       <div class="form-fallback-box" role="region" aria-label="Direct Google Form link">
         <div class="form-fallback-text">
           <strong>Embedded form not loading?</strong>
-          <span>Open the Google Workspace verification form directly in a new tab.</span>
+          <span>Open the Google Form directly in a new tab.</span>
         </div>
         <a href="https://forms.gle/3vtXWwWyg96toSUu6" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
           Open Form in New Tab &#8599;
         </a>
+      </div>
+
+      <div class="post-sign-bar" role="region" aria-label="Next steps after signing">
+        <span><strong>Just submitted your signature?</strong> Check the wall or share with your ensemble chat:</span>
+        <div class="post-sign-bar-actions">
+          <button type="button" class="btn" id="post-sign-refresh-btn">Check Supporter Wall</button>
+          <button type="button" class="btn" id="post-sign-share-btn">Share on WhatsApp</button>
+        </div>
       </div>
     </section>
 
@@ -1853,6 +2021,11 @@
         <button type="button" class="btn" id="refresh-wall-btn">Refresh</button>
       </div>
 
+      <div class="wall-status-bar">
+        <span id="wall-count-status" aria-live="polite">Syncing verified signatures…</span>
+        <span>Newest entries shown first</span>
+      </div>
+
       <div class="wall-grid" id="wall-grid">
         <div class="wall-empty">
           <strong>Loading verified signatures…</strong>
@@ -1864,27 +2037,27 @@
       <p class="eyebrow">Outreach</p>
       <h2>Formal Letter Templates</h2>
       <p class="lead">
-        These letters are addressed respectfully to Headmaster Mr Mike Windsor and pastoral staff. Personalise your details below to copy, email, or print a letter.
+        Addressed to the Head, Mr Michael Windsor, or your Housemaster / Tutor.</br>Just select a template and enter your details below to print or email.
       </p>
 
       <div class="letter-tabs" role="tablist" aria-label="Select letter template">
-        <button type="button" class="work-tab active" data-letter="student" role="tab" aria-selected="true">1. Student Letter to Mr Windsor</button>
+        <button type="button" class="work-tab active" data-letter="student" role="tab" aria-selected="true">1. Pupil Letter to Mr Windsor</button>
         <button type="button" class="work-tab" data-letter="parent" role="tab" aria-selected="false">2. Parent / Guardian Letter</button>
-        <button type="button" class="work-tab" data-letter="tutor" role="tab" aria-selected="false">3. Form Tutor / Housemaster Note</button>
+        <button type="button" class="work-tab" data-letter="tutor" role="tab" aria-selected="false">3. Housemaster / Tutor Note</button>
       </div>
 
       <div class="personaliser-grid">
         <div class="field-group">
-          <label for="sender-name">Your Full Name</label>
-          <input type="text" id="sender-name" class="input-field" placeholder="e.g., Alex Taylor" value="" />
+          <label for="sender-field-1" id="label-field-1">Your Full Name</label>
+          <input type="text" id="sender-field-1" class="input-field" placeholder="e.g. Alex Taylor" value="" />
         </div>
         <div class="field-group">
-          <label for="sender-role">Year Group &amp; Ensemble (or Parent Info)</label>
-          <input type="text" id="sender-role" class="input-field" placeholder="e.g., Lower Sixth · Symphony Orchestra &amp; Chapel Choir" value="" />
+          <label for="sender-field-2" id="label-field-2">Year Group &amp; House</label>
+          <input type="text" id="sender-field-2" class="input-field" placeholder="e.g. Lower Sixth · Crescent House" value="" />
         </div>
         <div class="field-group">
-          <label for="sender-house">House / Tutor Group (Optional)</label>
-          <input type="text" id="sender-house" class="input-field" placeholder="e.g., Crescent House" value="" />
+          <label for="sender-field-3" id="label-field-3">Ensemble(s)</label>
+          <input type="text" id="sender-field-3" class="input-field" placeholder="e.g. Symphony Orchestra &amp; Chapel Choir" value="" />
         </div>
       </div>
 
@@ -1892,6 +2065,7 @@
         <button type="button" class="btn btn-primary" id="print-letter-btn">Print / Save Letter as PDF</button>
         <button type="button" class="btn" id="copy-letter-btn">Copy Letter Text</button>
         <a href="#" class="btn" id="mailto-letter-btn">Open in Email App</a>
+        <button type="button" class="btn" id="reset-letter-btn">Clear Fields</button>
       </div>
 
       <article id="formal-letter-sheet" aria-label="Formal letter preview">
@@ -1916,7 +2090,7 @@
         <div class="card">
           <span class="badge">Step 02</span>
           <h3>Parent Follow-Up</h3>
-          <p style="margin:0; font-size:14px; color:var(--ink-muted);">Families who submitted expressions of interest send individual letters to the Headmaster's Office.</p>
+          <p style="margin:0; font-size:14px; color:var(--ink-muted);">Families who submitted expressions of interest send individual letters to the Head's Office.</p>
         </div>
         <div class="card">
           <span class="badge">Step 03</span>
@@ -1943,6 +2117,11 @@
       <details class="faq-item">
         <summary>Is this campaign respectful of our Music teachers and School Leadership? <span>+</span></summary>
         <p>Yes. Our Music staff organise nearly 90 concerts a year and wholeheartedly support pupil music-making. This petition is a polite, constructive student request asking Senior Leadership to honour the 2027 cohort before moving to a 2027 &rarr; 2029 biennial schedule.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How is the Germany tour funded, and is there enough family demand? <span>+</span></summary>
+        <p>Overseas Music tours are self-funded by participating families and coordinated through an external specialist educational tour operator. As the Head noted in his 16 November 2026 letter, a healthy level of parental and pupil interest had already been registered before the tour was deferred.</p>
       </details>
     </section>
 
@@ -2193,7 +2372,7 @@ let scrollTicking = false;
       },
       {
         ensemble: "Big Band",
-        title: 'Nina Simone (arr. Big Band) — "Feeling Good" (Theme from Rocky)',
+        title: 'Nina Simone (arr. Big Band) — "Feeling Good"',
         movements: [
           {
             label: "Full Piece",
@@ -2319,7 +2498,7 @@ let scrollTicking = false;
         }
       } else {
         syncPlayIcons(false);
-        playerStatus.textContent = "Ready";
+        playerStatus.textContent = "Ready · Tour programme recording";
       }
     }
 
@@ -2351,7 +2530,7 @@ let scrollTicking = false;
       const mvt = PROGRAMME_WORKS[currentWorkIdx].movements[currentMvtIdx];
       if (sourceTryIdx + 1 < mvt.urls.length) {
         sourceTryIdx += 1;
-        playerStatus.textContent = "Switching to backup archival stream...";
+        playerStatus.textContent = "Switching to backup recording...";
         audioEl.src = mvt.urls[sourceTryIdx];
         audioEl.load();
         if (isPlaying) {
@@ -2359,7 +2538,7 @@ let scrollTicking = false;
         }
       } else {
         syncPlayIcons(false);
-        playerStatus.textContent = "Archival stream temporarily unreachable - try another movement or work.";
+        playerStatus.textContent = "Recording unavailable — try another movement or work.";
       }
     });
 
@@ -2554,7 +2733,9 @@ let scrollTicking = false;
       }
 
       document.getElementById("progress-fill").style.width   = barPct + "%";
-      document.getElementById("progress-bar-role").setAttribute("aria-valuenow", String(total));
+      const progressBarRole = document.getElementById("progress-bar-role");
+      progressBarRole.setAttribute("aria-valuemax", String(SIGNATURE_GOAL));
+      progressBarRole.setAttribute("aria-valuenow", String(total));
       document.getElementById("count-orchestra").textContent = String(orch);
       document.getElementById("count-choir").textContent     = String(choir);
       document.getElementById("count-bigband").textContent   = String(bb);
@@ -2571,6 +2752,17 @@ let scrollTicking = false;
         const hay = `${s.name} ${s.year} ${s.ensemble} ${s.note}`.toLowerCase();
         return matchesFilter && (!query || hay.includes(query));
       });
+
+      const wallStatusEl = document.getElementById("wall-count-status");
+      if (wallStatusEl) {
+        if (verifiedSigners.length === 0) {
+          wallStatusEl.textContent = "0 verified signatures synced yet";
+        } else if (filter === "ALL" && !query) {
+          wallStatusEl.textContent = `Showing all ${verifiedSigners.length} verified signature${verifiedSigners.length === 1 ? "" : "s"}`;
+        } else {
+          wallStatusEl.textContent = `Showing ${filtered.length} of ${verifiedSigners.length} verified signature${verifiedSigners.length === 1 ? "" : "s"}`;
+        }
+      }
 
       if (filtered.length === 0) {
         grid.innerHTML = `
@@ -2686,55 +2878,139 @@ function realignInitialHash() {
     const LETTER_TEMPLATES = {
       student: {
         recipientEmail: "heads.pa@abingdon.org.uk",
+        fields: [
+          { label: "Your Full Name", placeholder: "e.g. Alex Taylor", fallback: "[Your Full Name]" },
+          { label: "Year Group & House", placeholder: "e.g. Lower Sixth · Crescent House", fallback: "[Year Group · House]" },
+          { label: "Ensemble(s)", placeholder: "e.g. Symphony Orchestra & Chapel Choir", fallback: "[Ensemble(s)]" }
+        ],
         recipientLines: [
           "Mr Michael Windsor",
-          "Headmaster",
+          "Head",
           "Abingdon School",
-          "Park Road, Abingdon",
-          "Oxfordshire, OX14 1DE"
+          "Park Road",
+          "Abingdon",
+          "Oxfordshire",
+          "OX14 1DE"
         ],
-        subject: "RE: Request to Reinstate the Summer 2027 Germany Music Tour",
-        paragraphs: [
-          "Dear Mr Windsor,",
-          "Thank you for writing on 16 November 2026 regarding the proposed Music department tour to Germany in Summer 2027, and for the School's continued support for the concerts staged by Abingdon musicians over the past year.",
-          "I am writing respectfully as a member of Abingdon's musical community to ask the Senior Leadership to reconsider the deferral of the tour to 2028. While we fully appreciate the School's aim of balancing educational visits across activities and moving multi-year-group trips to a sustainable biennial cycle, deferring the already-announced 2027 tour means that some pupils will leave Abingdon without ever having had the opportunity to perform on an overseas Music tour.",
-          "As healthy expressions of interest from families have already been gathered for Germany 2027, we would like to propose a fair compromise: honouring the Summer 2027 Germany tour for our Symphony Orchestra, Chapel Choir, and Big Band, and beginning the new biennial cycle from Summer 2027 to Summer 2029. We are also eager to assist staff with rehearsal packs and tour administration alongside external tour operators to keep organisational demands manageable.",
-          "Thank you very much for taking the time to consider the views of Abingdon's musicians."
-        ]
+        subject: "Re: Request to Reinstate the Summer 2027 Germany Music Tour",
+        buildSenderLines(f1, f2, f3) {
+          return [
+            f1,
+            f2,
+            f3,
+            "Abingdon School",
+            formatBritishDate()
+          ].filter(Boolean);
+        },
+        buildSalutation() {
+          return "Dear Mr Windsor,";
+        },
+        buildParagraphs(f1, f2, f3) {
+          const hasEnsemble = f3 && !f3.startsWith("[");
+          const ensemblePhrase = hasEnsemble
+            ? `as a member of ${f3}`
+            : "as a member of Abingdon's musical community";
+          return [
+            "Thank you for writing to families on 16 November 2026 regarding the proposed Music department tour to Germany in Summer 2027, and for the School's continued support for the concerts staged by Abingdon musicians throughout the year.",
+            `I am writing respectfully ${ensemblePhrase} to ask Senior Leadership to reconsider the deferral of the tour to 2028. While we fully appreciate the School's aim of balancing educational visits across activities and moving multi-year-group trips onto a sustainable biennial cycle, deferring the already-announced 2027 tour means that Upper Sixth section principals and choir leads will leave Abingdon without ever having represented the School musically abroad, while current Fourth Years face GCSE examinations in Summer 2028.`,
+            "As healthy expressions of interest from families have already been gathered for Germany 2027, we would like to propose a constructive compromise: honouring the Summer 2027 Germany tour for Symphony Orchestra, Chapel Choir, and Big Band, and beginning the new biennial cycle from Summer 2027 to Summer 2029. Senior pupils are also keen to assist staff with rehearsal packs, stage management, and tour administration alongside the external tour operator so that organisational demands remain manageable.",
+            "Thank you very much for taking the time to consider the views of Abingdon's musicians."
+          ];
+        },
+        buildSignoffLines(f1, f2, f3) {
+          return [
+            f1,
+            [f2, f3].filter(Boolean).join(" · ")
+          ].filter(Boolean);
+        }
       },
       parent: {
         recipientEmail: "heads.pa@abingdon.org.uk",
+        fields: [
+          { label: "Parent / Guardian Name(s)", placeholder: "e.g. Dr & Mrs R. Taylor", fallback: "[Parent / Guardian Name(s)]" },
+          { label: "Home Address & Postcode (Optional)", placeholder: "e.g. 14 St Helen's Close, Abingdon, OX14 5AB", fallback: "" },
+          { label: "Son's Name, Year & Ensemble(s)", placeholder: "e.g. Alex Taylor (Lower Sixth · Symphony Orchestra)", fallback: "" }
+        ],
         recipientLines: [
           "Mr Michael Windsor",
-          "Headmaster",
+          "Head",
           "Abingdon School",
-          "Park Road, Abingdon",
-          "Oxfordshire, OX14 1DE"
+          "Park Road",
+          "Abingdon",
+          "Oxfordshire",
+          "OX14 1DE"
         ],
-        subject: "RE: Summer 2027 Music Tour to Germany - Parental Support",
-        paragraphs: [
-          "Dear Mr Windsor,",
-          "Thank you for your letter of 16 November 2026 outlining the School's decision to move multi-year-group trips onto a biennial cycle and defer the overseas Music tour from Summer 2027 to Summer 2028.",
-          "As a parent/guardian of an Abingdon musician, I wanted to share how much our family values the extraordinary musical opportunities at the School, and to express our strong support for reinstating the Summer 2027 tour to Germany. Having already registered our interest earlier this academic year, we were saddened that current pupils in the Symphony Orchestra, Chapel Choir, and Big Band would otherwise miss their final opportunity to represent Abingdon abroad before leaving the School.",
-          "We fully understand the importance of staff workload and maintaining balance across departments. Running the planned Germany tour in Summer 2027 where strong family commitment already exists, and commencing the biennial schedule with the next overseas Music tour in Summer 2029 would achieve both fairness for this cohort and long-term sustainability.",
-          "Thank you for your consideration and for all that you and the Music staff do for the pupils."
-        ]
+        subject: "Re: Summer 2027 Music Tour to Germany — Parental Support",
+        buildSenderLines(f1, f2) {
+          const addressLines = f2
+            ? f2.split(",").map(part => part.trim()).filter(Boolean)
+            : [];
+          return [
+            f1,
+            ...addressLines,
+            formatBritishDate()
+          ].filter(Boolean);
+        },
+        buildSalutation() {
+          return "Dear Mr Windsor,";
+        },
+        buildParagraphs(f1, f2, f3) {
+          const childClause = f3
+            ? `As the parent/guardian of ${f3}, I wanted`
+            : "As a parent/guardian of an Abingdon musician, I wanted";
+          return [
+            "Thank you for your letter of 16 November 2026 outlining the School's decision to move multi-year-group trips onto a biennial cycle and defer the overseas Music tour from Summer 2027 to Summer 2028.",
+            `${childClause} to share how much our family values the musical life of the School, and to express our strong support for reinstating the Summer 2027 tour to Germany. Having already registered our interest earlier this term, we were disappointed that current pupils in the Symphony Orchestra, Chapel Choir, and Big Band would otherwise miss their opportunity to represent Abingdon abroad before leaving the School or entering public examination years.`,
+            "We fully recognise the importance of staff wellbeing and maintaining an equitable balance of trips across departments. Running the planned Germany tour in Summer 2027 — where strong parental commitment already exists — and commencing the biennial schedule with the next overseas Music tour in Summer 2029 would achieve both fairness for this cohort and long-term sustainability.",
+            "Thank you for your consideration and for all that you and the Music department do for the boys."
+          ];
+        },
+        buildSignoffLines(f1, f2, f3) {
+          return [
+            f1,
+            f3 ? `Parent / Guardian of ${f3}` : ""
+          ].filter(Boolean);
+        }
       },
       tutor: {
         recipientEmail: "",
-        recipientLines: [
-          "Housemaster / Form Tutor",
-          "Abingdon School",
-          "Park Road, Abingdon",
-          "Oxfordshire, OX14 1DE"
+        fields: [
+          { label: "Your Full Name", placeholder: "e.g. Alex Taylor", fallback: "[Your Full Name]" },
+          { label: "Housemaster / Form Tutor Name", placeholder: "e.g. Mr J. Smith", fallback: "Housemaster / Form Tutor" },
+          { label: "Year Group, House & Ensemble(s)", placeholder: "e.g. Lower Sixth · Crescent House · Big Band", fallback: "[Year Group · House · Ensemble]" }
         ],
-        subject: "RE: Student Petition Regarding the Summer 2027 Germany Music Tour",
-        paragraphs: [
-          "Dear Tutor / Housemaster,",
-          "I wanted to let you know briefly about a constructive, student-led petition organised by members of the Symphony Orchestra, Chapel Choir, and Big Band (https://savethetour.de) regarding the Summer 2027 Music tour to Germany.",
-          "Following the Headmaster's letter of 16 November 2026 moving multi-year-group trips to a biennial cycle, pupils are respectfully asking Senior Leadership to honour the already-announced Summer 2027 Germany tour for current senior musicians and begin the biennial cycle from 2027 to 2029. Signatures are strictly verified via @abingdon.org.uk accounts with full respect for staff and leadership.",
-          "Thank you for your ongoing support in House and Tutor time."
-        ]
+        recipientLines: [],
+        subject: "Re: Student Petition Regarding the Summer 2027 Germany Music Tour",
+        buildSenderLines(f1, f2, f3) {
+          return [
+            f1,
+            f3,
+            "Abingdon School",
+            formatBritishDate()
+          ].filter(Boolean);
+        },
+        buildRecipientLines(f1, f2) {
+          return [
+            f2 || "Housemaster / Form Tutor",
+            "Abingdon School"
+          ];
+        },
+        buildSalutation(f1, f2) {
+          return `Dear ${f2 || "Housemaster / Form Tutor"},`;
+        },
+        buildParagraphs() {
+          return [
+            "I wanted to let you know briefly about a constructive, pupil-led petition organised by members of the Symphony Orchestra, Chapel Choir, and Big Band (https://savethetour.de) regarding the Summer 2027 Music tour to Germany.",
+            "Following the Head's letter of 16 November 2026 moving multi-year-group trips to a biennial cycle, pupils are respectfully asking Senior Leadership to honour the already-announced Summer 2027 Germany tour for current musicians and begin the biennial cycle from 2027 to 2029. Signatures are strictly verified via @abingdon.org.uk accounts with full respect for staff and leadership.",
+            "Thank you for your ongoing support in House and Tutor time."
+          ];
+        },
+        buildSignoffLines(f1, f2, f3) {
+          return [
+            f1,
+            f3
+          ].filter(Boolean);
+        }
       }
     };
 
@@ -2756,58 +3032,75 @@ function realignInitialHash() {
         .replace(/"/g, "&quot;");
     }
 
+    function syncLetterInputsForTab(key) {
+      const tpl = LETTER_TEMPLATES[key];
+      tpl.fields.forEach((fieldCfg, idx) => {
+        const num = idx + 1;
+        const labelEl = document.getElementById("label-field-" + num);
+        const inputEl = document.getElementById("sender-field-" + num);
+        if (labelEl) labelEl.textContent = fieldCfg.label;
+        if (inputEl) {
+          inputEl.placeholder = fieldCfg.placeholder;
+          inputEl.value = storageHelper.get(`savethetour_${key}_f${num}`) || "";
+        }
+      });
+    }
+
     function renderFormalLetter() {
-      const tpl   = LETTER_TEMPLATES[activeLetterKey];
-      const name  = document.getElementById("sender-name").value.trim() || "[Your Full Name]";
-      const role  = document.getElementById("sender-role").value.trim() || "[Year Group · Ensemble]";
-      const house = document.getElementById("sender-house").value.trim();
+      const tpl = LETTER_TEMPLATES[activeLetterKey];
+      const raw1 = document.getElementById("sender-field-1").value.trim();
+      const raw2 = document.getElementById("sender-field-2").value.trim();
+      const raw3 = document.getElementById("sender-field-3").value.trim();
 
-      const senderBlock = document.getElementById("letter-sender-block");
-      senderBlock.innerHTML = [
-        name,
-        role,
-        house,
-        "Abingdon School, Park Road, Abingdon, OX14 1DE",
-        formatBritishDate()
-      ].filter(Boolean).map(line => `<div>${escapeHtml(line)}</div>`).join("");
+      const f1 = raw1 || tpl.fields[0].fallback;
+      const f2 = raw2 || tpl.fields[1].fallback;
+      const f3 = raw3 || tpl.fields[2].fallback;
 
-      const recipBlock = document.getElementById("letter-recipient-block");
-      recipBlock.innerHTML = tpl.recipientLines.map(line => `<div>${escapeHtml(line)}</div>`).join("");
+      const senderLines = tpl.buildSenderLines(f1, f2, f3);
+      const recipLines  = tpl.buildRecipientLines
+        ? tpl.buildRecipientLines(f1, f2, f3)
+        : tpl.recipientLines;
+      const salutation  = tpl.buildSalutation(f1, f2, f3);
+      const bodyParas   = tpl.buildParagraphs(f1, f2, f3);
+      const signoffLines = tpl.buildSignoffLines(f1, f2, f3);
+
+      document.getElementById("letter-sender-block").innerHTML = senderLines
+        .map(line => `<div>${escapeHtml(line)}</div>`)
+        .join("");
+
+      document.getElementById("letter-recipient-block").innerHTML = recipLines
+        .map(line => `<div>${escapeHtml(line)}</div>`)
+        .join("");
 
       document.getElementById("letter-subject").textContent = tpl.subject;
 
-      const bodyEl = document.getElementById("letter-body");
-      bodyEl.innerHTML = tpl.paragraphs.map(p => `<p>${escapeHtml(p)}</p>`).join("");
+      document.getElementById("letter-body").innerHTML = [salutation, ...bodyParas]
+        .map(p => `<p>${escapeHtml(p)}</p>`)
+        .join("");
 
-      const signoffEl = document.getElementById("letter-signoff");
-      signoffEl.innerHTML = `
+      document.getElementById("letter-signoff").innerHTML = `
         <div>Yours sincerely,</div>
         <div class="letter-sig-space"></div>
-        <div><strong>${escapeHtml(name)}</strong></div>
-        <div>${escapeHtml(role)}${house ? " · " + escapeHtml(house) : ""}</div>
+        ${signoffLines.map((line, i) => `<div>${i === 0 ? "<strong>" + escapeHtml(line) + "</strong>" : escapeHtml(line)}</div>`).join("")}
       `;
 
       const plainText = [
-        name,
-        role,
-        house,
-        "Abingdon School, Park Road, Abingdon, OX14 1DE",
-        formatBritishDate(),
+        ...senderLines,
         "",
-        ...tpl.recipientLines,
+        ...recipLines,
         "",
         tpl.subject,
         "",
-        ...tpl.paragraphs,
+        salutation,
         "",
+        ...bodyParas.flatMap(p => [p, ""]),
         "Yours sincerely,",
         "",
-        name,
-        role + (house ? " · " + house : "")
-      ].filter((v, idx, arr) => !(v === "" && arr[idx - 1] === "")).join("\n");
+        ...signoffLines
+      ].join("\n").replace(/\n{3,}/g, "\n\n").trim();
 
       const mailtoBtn = document.getElementById("mailto-letter-btn");
-      mailtoBtn.href = `mailto:${encodeURIComponent(tpl.recipientEmail)}?subject=${encodeURIComponent(tpl.subject.replace(/^RE:\s*/i, ""))}&body=${encodeURIComponent(plainText)}`;
+      mailtoBtn.href = `mailto:${encodeURIComponent(tpl.recipientEmail)}?subject=${encodeURIComponent(tpl.subject.replace(/^Re:\s*/i, ""))}&body=${encodeURIComponent(plainText)}`;
       mailtoBtn.dataset.plainText = plainText;
     }
 
@@ -2819,18 +3112,27 @@ function realignInitialHash() {
           b.classList.toggle("active", active);
           b.setAttribute("aria-selected", String(active));
         });
+        syncLetterInputsForTab(activeLetterKey);
         renderFormalLetter();
       });
     });
 
-    ["sender-name", "sender-role", "sender-house"].forEach(id => {
-      const el = document.getElementById(id);
-      const saved = storageHelper.get("savethetour_" + id);
-      if (saved) el.value = saved;
+    [1, 2, 3].forEach(num => {
+      const el = document.getElementById("sender-field-" + num);
       el.addEventListener("input", () => {
-        storageHelper.set("savethetour_" + id, el.value);
+        storageHelper.set(`savethetour_${activeLetterKey}_f${num}`, el.value);
         renderFormalLetter();
       });
+    });
+
+    document.getElementById("reset-letter-btn").addEventListener("click", () => {
+      [1, 2, 3].forEach(num => {
+        const el = document.getElementById("sender-field-" + num);
+        el.value = "";
+        storageHelper.set(`savethetour_${activeLetterKey}_f${num}`, "");
+      });
+      renderFormalLetter();
+      showToast("Letter fields cleared");
     });
 
     document.getElementById("copy-letter-btn").addEventListener("click", async () => {
@@ -2858,7 +3160,18 @@ function realignInitialHash() {
       document.body.classList.remove("print-letter-only");
     });
 
+    syncLetterInputsForTab(activeLetterKey);
     renderFormalLetter();
+
+    document.getElementById("post-sign-refresh-btn").addEventListener("click", () => {
+      const wallEl = document.getElementById("wall");
+      if (wallEl) wallEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      syncPublicWall(true);
+    });
+
+    document.getElementById("post-sign-share-btn").addEventListener("click", () => {
+      window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(SHARE_TEXT), "_blank", "noopener");
+    });
 
     const SHARE_URL  = "https://savethetour.de/";
     const SHARE_TEXT = "Sign the verified @abingdon.org.uk student petition to save the Summer 2027 Germany Music Tour for Symphony Orchestra, Chapel Choir, and Big Band: https://savethetour.de/";
