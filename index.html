@@ -278,21 +278,33 @@
       gap: 8px;
     }
 
+    .mini-player-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
     .mini-player {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 4px 12px 4px 6px;
-      min-height: 40px;
+      padding: 4px;
+      height: 42px;
       box-shadow: var(--shadow-sm);
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .mini-player:hover,
+    .mini-player.is-open {
+      border-color: var(--border-strong);
     }
 
     .mini-player.is-playing {
       border-color: var(--cerise);
+      box-shadow: 0 0 0 3px var(--cerise-soft);
     }
 
     .mini-play-btn {
@@ -307,11 +319,58 @@
       justify-content: center;
       cursor: pointer;
       flex-shrink: 0;
-      transition: background-color 0.15s ease, transform 0.1s ease;
+      transition: background-color 0.15s ease, transform 0.12s ease;
     }
 
     .mini-play-btn:hover {
       background: var(--cerise-hover);
+      transform: scale(1.04);
+    }
+
+    .mini-play-btn:active {
+      transform: scale(0.96);
+    }
+
+    .mini-picker-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 32px;
+      padding: 0 10px 0 6px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .mini-picker-btn:hover,
+    .mini-player.is-open .mini-picker-btn {
+      background: var(--surface-subtle);
+    }
+
+    .mini-track-label {
+      max-width: 155px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mini-chevron {
+      width: 13px;
+      height: 13px;
+      color: var(--ink-muted);
+      flex-shrink: 0;
+      transition: transform 0.18s ease, color 0.15s ease;
+    }
+
+    .mini-player.is-open .mini-chevron {
+      transform: rotate(180deg);
+      color: var(--cerise);
     }
 
     .mini-eq {
@@ -332,13 +391,20 @@
       transition: height 0.2s ease;
     }
 
-    .mini-player.is-playing .mini-eq span:nth-child(1) {
+    .mini-eq span:nth-child(2) {
+      height: 7px;
+    }
+
+    .mini-player.is-playing .mini-eq span:nth-child(1),
+    .is-playing .mini-eq span:nth-child(1) {
       animation: eqBounce 0.65s ease-in-out infinite alternate;
     }
-    .mini-player.is-playing .mini-eq span:nth-child(2) {
+    .mini-player.is-playing .mini-eq span:nth-child(2),
+    .is-playing .mini-eq span:nth-child(2) {
       animation: eqBounce 0.5s ease-in-out 0.15s infinite alternate;
     }
-    .mini-player.is-playing .mini-eq span:nth-child(3) {
+    .mini-player.is-playing .mini-eq span:nth-child(3),
+    .is-playing .mini-eq span:nth-child(3) {
       animation: eqBounce 0.7s ease-in-out 0.3s infinite alternate;
     }
 
@@ -347,20 +413,201 @@
       to { height: 12px; }
     }
 
-    .mini-track-select {
-      border: none;
-      background: transparent;
-      font-size: 12.5px;
+    /* Custom Programme Popover Menu */
+    .track-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: min(370px, calc(100vw - 24px));
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(15, 18, 24, 0.18);
+      padding: 12px;
+      z-index: 110;
+      display: none;
+      text-align: left;
+    }
+
+    :root[data-theme="dark"] .track-popover {
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+    }
+
+    .track-popover.open {
+      display: block;
+      animation: popIn 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .track-popover-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 2px 4px 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+
+    .track-popover-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
       font-weight: 600;
-      color: var(--ink);
-      max-width: 175px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .track-popover-jump {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cerise);
+    }
+
+    .track-popover-jump:hover {
+      text-decoration: underline;
+    }
+
+    .track-popover-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .popover-track-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 11px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background: var(--bg);
+      text-align: left;
       cursor: pointer;
-      outline: none;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .popover-track-item:hover {
+      border-color: var(--border-strong);
+      background: var(--surface-subtle);
+    }
+
+    .popover-track-item.active {
+      border-color: var(--cerise);
+      background: var(--cerise-soft);
+    }
+
+    .popover-track-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .popover-track-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cerise);
+      margin-bottom: 2px;
+    }
+
+    .popover-track-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .popover-track-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .popover-track-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      flex-shrink: 0;
+      padding: 3px 7px;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .popover-track-item.active .popover-track-badge {
+      background: var(--cerise);
+      border-color: var(--cerise);
+      color: #FFFFFF;
+    }
+
+    .popover-mvts {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    .popover-mvts-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin-bottom: 6px;
+      padding-left: 2px;
+    }
+
+    .popover-mvt-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .popover-mvt-chip {
+      padding: 5px 9px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .popover-mvt-chip:hover {
+      border-color: var(--cerise);
+    }
+
+    .popover-mvt-chip.active {
+      background: var(--cerise);
+      border-color: var(--cerise);
+      color: #FFFFFF;
+      font-weight: 600;
     }
 
     .icon-btn {
-      min-width: 44px;
-      min-height: 44px;
+      min-width: 42px;
+      height: 42px;
       padding: 0 12px;
       border-radius: 999px;
       border: 1px solid var(--border);
@@ -373,6 +620,7 @@
       font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
+      box-shadow: var(--shadow-sm);
       transition: border-color 0.15s ease, background-color 0.15s ease;
     }
 
@@ -402,6 +650,8 @@
       border-top: 1px solid var(--border);
       background: var(--surface);
       padding: 14px 18px 18px;
+      max-height: calc(100dvh - 64px);
+      overflow-y: auto;
     }
 
     .mobile-drawer.open {
@@ -427,6 +677,121 @@
 
     .mobile-drawer-links a:hover {
       border-color: var(--cerise);
+    }
+
+    /* Mobile Drawer Audio Widget */
+    .drawer-audio-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px;
+    }
+
+    .drawer-audio-card.is-playing {
+      border-color: var(--cerise);
+    }
+
+    .drawer-audio-top {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding-bottom: 11px;
+      margin-bottom: 11px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .drawer-audio-meta {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .drawer-audio-kicker {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--cerise);
+      margin-bottom: 2px;
+    }
+
+    .drawer-audio-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .drawer-audio-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .drawer-track-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+
+    .drawer-track-btn {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .drawer-track-btn:hover {
+      border-color: var(--border-strong);
+    }
+
+    .drawer-track-btn.active {
+      border-color: var(--cerise);
+      background: var(--cerise-soft);
+    }
+
+    .drawer-track-ens {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-bottom: 1px;
+    }
+
+    .drawer-track-btn.active .drawer-track-ens {
+      color: var(--cerise);
+    }
+
+    .drawer-track-name {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .drawer-mvt-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 9px;
+      padding-top: 9px;
+      border-top: 1px solid var(--border);
     }
 
     .container {
@@ -768,33 +1133,97 @@
     }
 
     .work-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 22px;
     }
 
     .work-tab {
       min-height: 44px;
-      padding: 8px 14px;
-      border-radius: 8px;
+      padding: 12px 14px;
+      border-radius: 10px;
       border: 1px solid var(--border);
       background: var(--bg);
       color: var(--ink);
       font-size: 13.5px;
       font-weight: 600;
+      text-align: left;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.1s ease;
     }
 
     .work-tab:hover:not(.active) {
       border-color: var(--cerise);
+      background: var(--surface-subtle);
     }
 
     .work-tab.active {
       background: var(--cerise);
       border-color: var(--cerise);
       color: #FFFFFF;
+      box-shadow: 0 6px 16px rgba(216, 27, 96, 0.22);
+    }
+
+    .work-card-tab {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .work-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .work-card-ens {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--cerise);
+    }
+
+    .work-tab.active .work-card-ens {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .work-card-count {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--ink-muted);
+      padding: 2px 6px;
+      border-radius: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .work-tab.active .work-card-count {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #FFFFFF;
+    }
+
+    .work-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .work-card-composer {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    .work-tab.active .work-card-composer {
+      color: rgba(255, 255, 255, 0.85);
     }
 
     .player-header {
@@ -899,19 +1328,23 @@
 
     .mvt-btn {
       min-height: 40px;
-      padding: 6px 12px;
-      border-radius: 6px;
+      padding: 7px 13px;
+      border-radius: 8px;
       border: 1px solid var(--border);
       background: var(--bg);
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
       text-align: left;
-      transition: border-color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
     }
 
     .mvt-btn:hover {
       border-color: var(--cerise);
+      background: var(--surface-subtle);
     }
 
     .mvt-btn.active {
@@ -919,6 +1352,12 @@
       background: var(--cerise-soft);
       color: var(--cerise);
       font-weight: 600;
+    }
+
+    .mvt-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      opacity: 0.72;
     }
 
     .privacy-banner {
@@ -1340,7 +1779,24 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .mobile-float-bar #mobile-float-play {
+      padding: 0 12px;
+    }
+
+    .mobile-float-bar #mobile-float-play.is-playing {
+      border-color: var(--cerise);
+      background: var(--cerise-soft);
+      color: var(--cerise);
+    }
+
+    .float-play-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .toast {
@@ -1398,19 +1854,152 @@
       }
     }
 
-    @media (max-width: 640px) {
-      .tablet-subnav,
-      .mini-track-select,
-      .mini-eq {
+    @media (max-width: 720px) {
+      .cycle-table-wrap {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        overflow: visible;
+      }
+
+      .cycle-table,
+      .cycle-table tbody {
+        display: block;
+        width: 100%;
+      }
+
+      .cycle-table thead {
         display: none;
       }
 
+      .cycle-table tbody {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .cycle-table tbody tr {
+        display: block;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px 18px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .cycle-table tbody tr.row-highlight {
+        background: var(--cerise-soft);
+        border: 1.5px solid var(--cerise);
+      }
+
+      .cycle-table tbody td {
+        display: block;
+        width: 100%;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 14.5px;
+        line-height: 1.5;
+      }
+
+      .cycle-table tbody tr.row-highlight td {
+        border-bottom-color: rgba(216, 27, 96, 0.2);
+      }
+
+      .cycle-table tbody td:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .cycle-table tbody td::before {
+        content: attr(data-label);
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink-muted);
+        margin-bottom: 2px;
+      }
+
+      .cycle-table tbody td:first-child {
+        padding-top: 0;
+        padding-bottom: 10px;
+        margin-bottom: 2px;
+        font-family: var(--font-serif);
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .cycle-table tbody tr.row-highlight td:first-child {
+        color: var(--cerise);
+      }
+
+      .cycle-table tbody tr.row-highlight td:first-child::before {
+        content: "" attr(data-label);
+        color: var(--cerise);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .tablet-subnav,
+      .mini-track-label {
+        display: none;
+      }
+
+      .header-inner {
+        padding-left: max(14px, env(safe-area-inset-left, 14px));
+        padding-right: max(14px, env(safe-area-inset-right, 14px));
+        gap: 8px;
+      }
+
+      .brand-wordmark {
+        height: 19px;
+      }
+
+      .header-controls {
+        gap: 6px;
+      }
+
       .mini-player {
-        padding-right: 4px;
+        height: 40px;
+        padding: 3px;
+        gap: 2px;
+      }
+
+      .mini-play-btn {
+        width: 32px;
+        height: 32px;
+      }
+
+      .mini-picker-btn {
+        height: 32px;
+        padding: 0 8px 0 6px;
+        gap: 5px;
+      }
+
+      .track-popover {
+        position: fixed;
+        top: calc(58px + env(safe-area-inset-top, 0px));
+        left: 12px;
+        right: 12px;
+        width: auto;
+      }
+
+      .icon-btn {
+        height: 40px;
+        min-width: 40px;
+        padding: 0 11px;
       }
 
       .mobile-menu-btn {
         display: inline-flex;
+      }
+
+      .work-tabs {
+        grid-template-columns: 1fr;
       }
 
       .hero {
@@ -1477,6 +2066,21 @@
       }
     }
 
+    @media (max-width: 400px) {
+      #theme-label {
+        display: none;
+      }
+
+      #theme-toggle {
+        padding: 0;
+        width: 40px;
+      }
+
+      .brand-wordmark {
+        height: 17px;
+      }
+    }
+
     @media print {
       @page {
         size: A4 portrait;
@@ -1501,6 +2105,8 @@
       }
 
       .site-header,
+      .track-popover,
+      .mobile-drawer,
       .mobile-float-bar,
       .quick-actions,
       .listening-room,
@@ -1527,15 +2133,36 @@
       }
 
       .cycle-table {
+        display: table !important;
         width: 100% !important;
         border-collapse: collapse !important;
         margin-top: 8pt !important;
       }
 
+      .cycle-table thead {
+        display: table-header-group !important;
+      }
+
+      .cycle-table tbody {
+        display: table-row-group !important;
+      }
+
+      .cycle-table tr {
+        display: table-row !important;
+        border: none !important;
+        padding: 0 !important;
+      }
+
       .cycle-table th,
       .cycle-table td {
+        display: table-cell !important;
+        width: auto !important;
         border: 0.75pt solid #000000 !important;
         padding: 6pt 8pt !important;
+      }
+
+      .cycle-table td::before {
+        display: none !important;
       }
 
       .container {
@@ -1653,17 +2280,29 @@
       </nav>
 
       <div class="header-controls">
-        <div class="mini-player" id="mini-player" role="region" aria-label="Programme audio mini-player">
-          <button type="button" class="mini-play-btn" id="mini-play-btn" aria-label="Play programme recording">
-            <svg id="mini-play-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6,4 20,12 6,20"></polygon></svg>
-          </button>
-          <span class="mini-eq" aria-hidden="true"><span></span><span></span><span></span></span>
-          <select id="mini-work-select" class="mini-track-select" aria-label="Select programme piece">
-            <option value="0">Schumann</option>
-            <option value="1">Fauré</option>
-            <option value="2">The Chicken</option>
-            <option value="3">Feeling Good</option>
-          </select>
+        <div class="mini-player-wrap" id="mini-player-wrap">
+          <div class="mini-player" id="mini-player" role="region" aria-label="Programme audio mini-player">
+            <button type="button" class="mini-play-btn" id="mini-play-btn" aria-label="Play programme recording">
+              <svg id="mini-play-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6,4 20,12 6,20"></polygon></svg>
+            </button>
+            <button type="button" class="mini-picker-btn" id="mini-picker-btn" aria-expanded="false" aria-controls="mini-picker-popover" aria-label="Choose programme piece or movement">
+              <span class="mini-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+              <span class="mini-track-label" id="mini-track-label">Schumann · I. Lebhaft</span>
+              <svg class="mini-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 7.5 10 12.5 15 7.5"></polyline></svg>
+            </button>
+          </div>
+
+          <div class="track-popover" id="mini-picker-popover" role="dialog" aria-label="Tour programme selector">
+            <div class="track-popover-head">
+              <span class="track-popover-title">Tour Programme</span>
+              <a href="#programme" class="track-popover-jump" id="popover-jump-link">Listening Room &darr;</a>
+            </div>
+            <div class="track-popover-list" id="popover-track-list"></div>
+            <div class="popover-mvts" id="popover-mvts-wrap">
+              <div class="popover-mvts-label">Movements</div>
+              <div class="popover-mvt-strip" id="popover-mvt-strip"></div>
+            </div>
+          </div>
         </div>
 
         <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch colour theme">
@@ -1672,7 +2311,8 @@
         </button>
 
         <button type="button" class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Open menu">
-          Menu
+          <svg id="mobile-menu-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+          <span id="mobile-menu-text">Menu</span>
         </button>
       </div>
     </div>
@@ -1699,14 +2339,23 @@
         <a href="#letters" class="drawer-link">Printable Letters</a>
         <a href="#faq" class="drawer-link">FAQ</a>
       </div>
-      <div class="field-group">
-        <label for="drawer-work-select">Programme Recording</label>
-        <select id="drawer-work-select" class="input-field">
-          <option value="0">Schumann — Symphony No. 3 ("Rhenish")</option>
-          <option value="1">Fauré — Requiem, Op. 48</option>
-          <option value="2">Pee Wee Ellis — "The Chicken" (Big Band)</option>
-          <option value="3">Nina Simone — "Feeling Good" (Big Band)</option>
-        </select>
+
+      <div class="drawer-audio-card" id="drawer-audio-card">
+        <div class="drawer-audio-top">
+          <button type="button" class="mini-play-btn" id="drawer-play-btn" aria-label="Play or pause programme recording" style="width:38px; height:38px;">
+            <svg id="drawer-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6,4 20,12 6,20"></polygon></svg>
+          </button>
+          <div class="drawer-audio-meta">
+            <div class="drawer-audio-kicker">
+              <span class="mini-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+              <span id="drawer-audio-ens">Symphony Orchestra</span>
+            </div>
+            <div class="drawer-audio-title" id="drawer-audio-title">Schumann — Symphony No. 3</div>
+            <div class="drawer-audio-sub" id="drawer-audio-sub">I. Lebhaft</div>
+          </div>
+        </div>
+        <div class="drawer-track-grid" id="drawer-track-grid"></div>
+        <div class="drawer-mvt-row" id="drawer-mvt-row"></div>
       </div>
     </div>
   </header>
@@ -1806,16 +2455,16 @@
           </thead>
           <tbody>
             <tr>
-              <td>Current Deferral</td>
-              <td>Summer 2028, Summer 2030</td>
-              <td>2-year cycle (starts 2028)</td>
-              <td>Current Upper Sixth leave without a tour; Fifth Year face GCSEs in 2028</td>
+              <td data-label="Scheduling Option">Current Deferral</td>
+              <td data-label="Overseas Music Tours">Summer 2028, Summer 2030</td>
+              <td data-label="Cycle Rhythm">2-year cycle (starts 2028)</td>
+              <td data-label="Impact on Current Musicians">Current Upper Sixth leave without a tour; Fifth Year face GCSEs in 2028</td>
             </tr>
             <tr class="row-highlight">
-              <td>Student Compromise</td>
-              <td>Summer 2027, Summer 2029, Summer 2031</td>
-              <td>Exact 2-year cycle (starts 2027)</td>
-              <td>Honours existing 2027 family sign-ups, then locks in a strict biennial rhythm</td>
+              <td data-label="Scheduling Option">Student Compromise</td>
+              <td data-label="Overseas Music Tours">Summer 2027, Summer 2029, Summer 2031</td>
+              <td data-label="Cycle Rhythm">Exact 2-year cycle (starts 2027)</td>
+              <td data-label="Impact on Current Musicians">Honours existing 2027 family sign-ups, then locks in a strict biennial rhythm</td>
             </tr>
           </tbody>
         </table>
@@ -1920,10 +2569,38 @@
 
       <div class="listening-room">
         <div class="work-tabs" role="tablist" aria-label="Select musical work">
-          <button type="button" class="work-tab active" data-work="0" role="tab" aria-selected="true">Schumann: Symphony No. 3</button>
-          <button type="button" class="work-tab" data-work="1" role="tab" aria-selected="false">Fauré: Requiem, Op. 48</button>
-          <button type="button" class="work-tab" data-work="2" role="tab" aria-selected="false">Big Band: The Chicken</button>
-          <button type="button" class="work-tab" data-work="3" role="tab" aria-selected="false">Big Band: Feeling Good</button>
+          <button type="button" class="work-tab work-card-tab active" data-work="0" role="tab" aria-selected="true">
+            <div class="work-card-top">
+              <span class="work-card-ens">Symphony Orchestra</span>
+              <span class="work-card-count">5 mvts</span>
+            </div>
+            <div class="work-card-title">Symphony No. 3 &ldquo;Rhenish&rdquo;</div>
+            <div class="work-card-composer">Robert Schumann</div>
+          </button>
+          <button type="button" class="work-tab work-card-tab" data-work="1" role="tab" aria-selected="false">
+            <div class="work-card-top">
+              <span class="work-card-ens">Chapel Choir</span>
+              <span class="work-card-count">7 mvts</span>
+            </div>
+            <div class="work-card-title">Requiem, Op. 48</div>
+            <div class="work-card-composer">Gabriel Faur&eacute;</div>
+          </button>
+          <button type="button" class="work-tab work-card-tab" data-work="2" role="tab" aria-selected="false">
+            <div class="work-card-top">
+              <span class="work-card-ens">Big Band</span>
+              <span class="work-card-count">Full piece</span>
+            </div>
+            <div class="work-card-title">&ldquo;The Chicken&rdquo;</div>
+            <div class="work-card-composer">Pee Wee Ellis · arr. Big Band</div>
+          </button>
+          <button type="button" class="work-tab work-card-tab" data-work="3" role="tab" aria-selected="false">
+            <div class="work-card-top">
+              <span class="work-card-ens">Big Band</span>
+              <span class="work-card-count">Full piece</span>
+            </div>
+            <div class="work-card-title">&ldquo;Feeling Good&rdquo;</div>
+            <div class="work-card-composer">Nina Simone · arr. Big Band</div>
+          </button>
         </div>
 
         <div class="player-header">
@@ -2144,7 +2821,11 @@
   </div>
 
   <div class="mobile-float-bar" id="mobile-float-bar">
-    <button type="button" class="btn" id="mobile-float-play">Play Music</button>
+    <button type="button" class="btn" id="mobile-float-play" aria-label="Play or pause programme music">
+      <svg id="float-play-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6,4 20,12 6,20"></polygon></svg>
+      <span class="mini-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="float-play-label" id="float-play-label">Schumann</span>
+    </button>
     <a href="#sign" class="btn btn-primary">Sign Petition</a>
   </div>
 
@@ -2214,29 +2895,32 @@
       applyTheme(current === "dark" ? "light" : "dark");
     });
 
-    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-    const mobileDrawer  = document.getElementById("mobile-drawer");
+    const mobileMenuBtn  = document.getElementById("mobile-menu-btn");
+    const mobileMenuText = document.getElementById("mobile-menu-text");
+    const mobileMenuIcon = document.getElementById("mobile-menu-icon");
+    const mobileDrawer   = document.getElementById("mobile-drawer");
+    const MENU_OPEN_SVG  = '<line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line>';
+    const MENU_CLOSE_SVG = '<line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line>';
 
     function closeMobileDrawer() {
       if (mobileDrawer.classList.contains("open")) {
         mobileDrawer.classList.remove("open");
         mobileMenuBtn.setAttribute("aria-expanded", "false");
-        mobileMenuBtn.textContent = "Menu";
+        if (mobileMenuText) mobileMenuText.textContent = "Menu";
+        if (mobileMenuIcon) mobileMenuIcon.innerHTML = MENU_OPEN_SVG;
       }
     }
 
     mobileMenuBtn.addEventListener("click", () => {
+      closeTrackPopover();
       const isOpen = mobileDrawer.classList.toggle("open");
       mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
-      mobileMenuBtn.textContent = isOpen ? "Close" : "Menu";
+      if (mobileMenuText) mobileMenuText.textContent = isOpen ? "Close" : "Menu";
+      if (mobileMenuIcon) mobileMenuIcon.innerHTML = isOpen ? MENU_CLOSE_SVG : MENU_OPEN_SVG;
     });
 
     document.querySelectorAll(".drawer-link").forEach(link => {
       link.addEventListener("click", closeMobileDrawer);
-    });
-
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") closeMobileDrawer();
     });
 
     const siteHeader = document.querySelector(".site-header");
@@ -2289,6 +2973,9 @@ let scrollTicking = false;
     const PROGRAMME_WORKS = [
       {
         ensemble: "Symphony Orchestra",
+        shortName: "Schumann",
+        shortTitle: 'Symphony No. 3 ("Rhenish")',
+        composer: "Robert Schumann",
         title: 'Robert Schumann — Symphony No. 3 in E-flat major, Op. 97 ("Rhenish")',
         movements: [
           {
@@ -2320,6 +3007,9 @@ let scrollTicking = false;
       },
       {
         ensemble: "Chapel Choir",
+        shortName: "Fauré",
+        shortTitle: "Requiem, Op. 48",
+        composer: "Gabriel Fauré",
         title: "Gabriel Fauré — Requiem in D minor, Op. 48",
         movements: [
           {
@@ -2361,6 +3051,9 @@ let scrollTicking = false;
       },
       {
         ensemble: "Big Band",
+        shortName: "The Chicken",
+        shortTitle: '"The Chicken"',
+        composer: "Pee Wee Ellis",
         title: 'Pee Wee Ellis (arr. Big Band) — "The Chicken"',
         movements: [
           {
@@ -2372,6 +3065,9 @@ let scrollTicking = false;
       },
       {
         ensemble: "Big Band",
+        shortName: "Feeling Good",
+        shortTitle: '"Feeling Good"',
+        composer: "Nina Simone",
         title: 'Nina Simone (arr. Big Band) — "Feeling Good"',
         movements: [
           {
@@ -2383,24 +3079,39 @@ let scrollTicking = false;
       }
     ];
 
-    const audioEl         = document.getElementById("programme-audio");
-    const miniPlayer      = document.getElementById("mini-player");
-    const mainPlayBtn     = document.getElementById("main-play-btn");
-    const mainPlayIcon    = document.getElementById("main-play-icon");
-    const miniPlayBtn     = document.getElementById("mini-play-btn");
-    const miniPlayIcon    = document.getElementById("mini-play-icon");
-    const mobileFloatPlay = document.getElementById("mobile-float-play");
-    const miniSelect      = document.getElementById("mini-work-select");
-    const drawerSelect    = document.getElementById("drawer-work-select");
-    const playerBadge     = document.getElementById("player-ensemble-badge");
-    const playerTitle     = document.getElementById("player-work-title");
-    const playerSubtitle  = document.getElementById("player-mvt-subtitle");
-    const playerStatus    = document.getElementById("player-status");
-    const mvtContainer    = document.getElementById("movement-pills");
-    const scrubberZone    = document.getElementById("scrubber-hitzone");
-    const scrubberProg    = document.getElementById("scrubber-progress");
-    const timeCurr        = document.getElementById("time-current");
-    const timeDur         = document.getElementById("time-duration");
+    const audioEl          = document.getElementById("programme-audio");
+    const miniPlayerWrap   = document.getElementById("mini-player-wrap");
+    const miniPlayer       = document.getElementById("mini-player");
+    const miniPickerBtn    = document.getElementById("mini-picker-btn");
+    const miniPickerPop    = document.getElementById("mini-picker-popover");
+    const miniTrackLabel   = document.getElementById("mini-track-label");
+    const popoverTrackList = document.getElementById("popover-track-list");
+    const popoverMvtsWrap  = document.getElementById("popover-mvts-wrap");
+    const popoverMvtStrip  = document.getElementById("popover-mvt-strip");
+    const drawerAudioCard  = document.getElementById("drawer-audio-card");
+    const drawerPlayBtn    = document.getElementById("drawer-play-btn");
+    const drawerPlayIcon   = document.getElementById("drawer-play-icon");
+    const drawerAudioEns   = document.getElementById("drawer-audio-ens");
+    const drawerAudioTitle = document.getElementById("drawer-audio-title");
+    const drawerAudioSub   = document.getElementById("drawer-audio-sub");
+    const drawerTrackGrid  = document.getElementById("drawer-track-grid");
+    const drawerMvtRow     = document.getElementById("drawer-mvt-row");
+    const mainPlayBtn      = document.getElementById("main-play-btn");
+    const mainPlayIcon     = document.getElementById("main-play-icon");
+    const miniPlayBtn      = document.getElementById("mini-play-btn");
+    const miniPlayIcon     = document.getElementById("mini-play-icon");
+    const mobileFloatPlay  = document.getElementById("mobile-float-play");
+    const floatPlayIcon    = document.getElementById("float-play-icon");
+    const floatPlayLabel   = document.getElementById("float-play-label");
+    const playerBadge      = document.getElementById("player-ensemble-badge");
+    const playerTitle      = document.getElementById("player-work-title");
+    const playerSubtitle   = document.getElementById("player-mvt-subtitle");
+    const playerStatus     = document.getElementById("player-status");
+    const mvtContainer     = document.getElementById("movement-pills");
+    const scrubberZone     = document.getElementById("scrubber-hitzone");
+    const scrubberProg     = document.getElementById("scrubber-progress");
+    const timeCurr         = document.getElementById("time-current");
+    const timeDur          = document.getElementById("time-duration");
 
     let currentWorkIdx = 0;
     let currentMvtIdx  = 0;
@@ -2411,6 +3122,37 @@ let scrollTicking = false;
     const PLAY_SVG  = '<polygon points="6,4 20,12 6,20"></polygon>';
     const PAUSE_SVG = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
 
+    function closeTrackPopover() {
+      if (miniPickerPop && miniPickerPop.classList.contains("open")) {
+        miniPickerPop.classList.remove("open");
+        miniPlayer.classList.remove("is-open");
+        miniPickerBtn.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    miniPickerBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      closeMobileDrawer();
+      const isOpen = miniPickerPop.classList.toggle("open");
+      miniPlayer.classList.toggle("is-open", isOpen);
+      miniPickerBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.getElementById("popover-jump-link").addEventListener("click", closeTrackPopover);
+
+    document.addEventListener("click", e => {
+      if (miniPlayerWrap && !miniPlayerWrap.contains(e.target)) {
+        closeTrackPopover();
+      }
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        closeMobileDrawer();
+        closeTrackPopover();
+      }
+    });
+
     function formatTime(sec) {
       if (!isFinite(sec) || sec < 0) return "0:00";
       const m = Math.floor(sec / 60);
@@ -2420,12 +3162,112 @@ let scrollTicking = false;
 
     function syncPlayIcons(playing) {
       isPlaying = playing;
+      const work = PROGRAMME_WORKS[currentWorkIdx];
       mainPlayIcon.innerHTML = playing ? PAUSE_SVG : PLAY_SVG;
       miniPlayIcon.innerHTML = playing ? PAUSE_SVG : PLAY_SVG;
+      if (drawerPlayIcon) drawerPlayIcon.innerHTML = playing ? PAUSE_SVG : PLAY_SVG;
+      if (floatPlayIcon) floatPlayIcon.innerHTML = playing ? PAUSE_SVG : PLAY_SVG;
       mainPlayBtn.setAttribute("aria-label", playing ? "Pause selected movement" : "Play selected movement");
       miniPlayBtn.setAttribute("aria-label", playing ? "Pause programme recording" : "Play programme recording");
       miniPlayer.classList.toggle("is-playing", playing);
-      mobileFloatPlay.textContent = playing ? "Pause Music" : "Play Music";
+      if (drawerAudioCard) drawerAudioCard.classList.toggle("is-playing", playing);
+      if (mobileFloatPlay) mobileFloatPlay.classList.toggle("is-playing", playing);
+      if (floatPlayLabel) floatPlayLabel.textContent = (playing ? "Pause · " : "Play · ") + work.shortName;
+    }
+
+    function renderCustomTrackPickers(workIdx, mvtIdx) {
+      const activeWork = PROGRAMME_WORKS[workIdx];
+      const activeMvt  = activeWork.movements[mvtIdx];
+
+      // 1. Update header mini-player label
+      if (miniTrackLabel) {
+        miniTrackLabel.textContent = activeWork.movements.length > 1
+          ? `${activeWork.shortName} · ${activeMvt.label}`
+          : activeWork.shortName;
+      }
+
+      // 2. Render desktop/mobile header popover track list
+      if (popoverTrackList) {
+        popoverTrackList.innerHTML = "";
+        PROGRAMME_WORKS.forEach((w, idx) => {
+          const isSelected = idx === workIdx;
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "popover-track-item" + (isSelected ? " active" : "");
+          const countText = w.movements.length > 1 ? `${w.movements.length} mvts` : "Full piece";
+          btn.innerHTML = `
+            <div class="popover-track-info">
+              <div class="popover-track-meta">${w.ensemble}</div>
+              <div class="popover-track-name">${w.shortTitle}</div>
+              <div class="popover-track-sub">${w.composer}</div>
+            </div>
+            <span class="popover-track-badge">${isSelected ? "Active" : countText}</span>
+          `;
+          btn.addEventListener("click", () => {
+            loadTrack(idx, 0, true);
+            if (w.movements.length === 1) closeTrackPopover();
+          });
+          popoverTrackList.appendChild(btn);
+        });
+      }
+
+      // 3. Render header popover movement chips
+      if (popoverMvtsWrap && popoverMvtStrip) {
+        if (activeWork.movements.length > 1) {
+          popoverMvtsWrap.style.display = "block";
+          popoverMvtStrip.innerHTML = "";
+          activeWork.movements.forEach((m, idx) => {
+            const chip = document.createElement("button");
+            chip.type = "button";
+            chip.className = "popover-mvt-chip" + (idx === mvtIdx ? " active" : "");
+            chip.textContent = m.label;
+            chip.addEventListener("click", () => {
+              loadTrack(workIdx, idx, true);
+              closeTrackPopover();
+            });
+            popoverMvtStrip.appendChild(chip);
+          });
+        } else {
+          popoverMvtsWrap.style.display = "none";
+        }
+      }
+
+      // 4. Render mobile menu drawer audio widget
+      if (drawerAudioEns) drawerAudioEns.textContent = activeWork.ensemble;
+      if (drawerAudioTitle) drawerAudioTitle.textContent = `${activeWork.composer} — ${activeWork.shortTitle}`;
+      if (drawerAudioSub) drawerAudioSub.textContent = activeMvt.label;
+
+      if (drawerTrackGrid) {
+        drawerTrackGrid.innerHTML = "";
+        PROGRAMME_WORKS.forEach((w, idx) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "drawer-track-btn" + (idx === workIdx ? " active" : "");
+          btn.innerHTML = `
+            <span class="drawer-track-ens">${w.ensemble}</span>
+            <span class="drawer-track-name">${w.shortName}</span>
+          `;
+          btn.addEventListener("click", () => loadTrack(idx, 0, true));
+          drawerTrackGrid.appendChild(btn);
+        });
+      }
+
+      if (drawerMvtRow) {
+        if (activeWork.movements.length > 1) {
+          drawerMvtRow.style.display = "flex";
+          drawerMvtRow.innerHTML = "";
+          activeWork.movements.forEach((m, idx) => {
+            const chip = document.createElement("button");
+            chip.type = "button";
+            chip.className = "popover-mvt-chip" + (idx === mvtIdx ? " active" : "");
+            chip.textContent = m.label;
+            chip.addEventListener("click", () => loadTrack(workIdx, idx, true));
+            drawerMvtRow.appendChild(chip);
+          });
+        } else {
+          drawerMvtRow.style.display = "none";
+        }
+      }
     }
 
     function updateMediaSession(work, mvt) {
@@ -2459,8 +3301,7 @@ let scrollTicking = false;
         btn.setAttribute("aria-selected", String(active));
       });
 
-      miniSelect.value   = String(workIdx);
-      drawerSelect.value = String(workIdx);
+      renderCustomTrackPickers(workIdx, mvtIdx);
 
       playerBadge.textContent    = work.ensemble;
       playerTitle.textContent    = work.title;
@@ -2474,7 +3315,7 @@ let scrollTicking = false;
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "mvt-btn" + (idx === mvtIdx ? " active" : "");
-        btn.textContent = item.label;
+        btn.innerHTML = `<span class="mvt-num">0${idx + 1}</span><span>${item.label}</span>`;
         btn.addEventListener("click", () => loadTrack(workIdx, idx, true));
         mvtContainer.appendChild(btn);
       });
@@ -2610,14 +3451,12 @@ let scrollTicking = false;
 
     mainPlayBtn.addEventListener("click", togglePlayPause);
     miniPlayBtn.addEventListener("click", togglePlayPause);
+    if (drawerPlayBtn) drawerPlayBtn.addEventListener("click", togglePlayPause);
     mobileFloatPlay.addEventListener("click", togglePlayPause);
 
     document.querySelectorAll(".work-tab[data-work]").forEach(btn => {
       btn.addEventListener("click", () => loadTrack(Number(btn.dataset.work), 0, true));
     });
-
-    miniSelect.addEventListener("change", e => loadTrack(Number(e.target.value), 0, true));
-    drawerSelect.addEventListener("change", e => loadTrack(Number(e.target.value), 0, true));
 
     loadTrack(0, 0, false);
 
