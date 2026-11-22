@@ -232,14 +232,14 @@
       height: 22px;
       width: auto;
       display: block;
-      filter: brightness(0);
-      opacity: 0.92;
+      filter: brightness(0) saturate(100%) invert(53%) sepia(97%) saturate(5761%) hue-rotate(-41deg) brightness(81%) contrast(113%);
+      opacity: 1;
       transition: filter 0.2s ease, opacity 0.2s ease;
     }
 
     :root[data-theme="dark"] .brand-wordmark {
-      filter: none;
-      opacity: 0.96;
+      filter: brightness(0) saturate(100%) invert(80%) sepia(70%) saturate(5761%) hue-rotate(-55deg) brightness(88%) contrast(115%);
+      opacity: 1;
     }
 
     .desktop-nav {
@@ -1042,10 +1042,8 @@
     }
 
     .supporter-name {
-      font-family: var(--font-serif);
-      font-weight: 700;
-      font-size: 15.5px;
-      letter-spacing: 0.02em;
+      font-weight: 600;
+      font-size: 14.5px;
     }
 
     .supporter-meta {
