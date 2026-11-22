@@ -101,6 +101,48 @@
       transition: background-color 0.2s ease, color 0.2s ease;
     }
 
+    ::-webkit-scrollbar {
+      width: 11px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--border-strong);
+      border-radius: 999px;
+      border: 3px solid var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: var(--cerise);
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+      background-color: var(--cerise-hover);
+    }
+
+    ::-webkit-scrollbar-corner {
+      background: var(--bg);
+    }
+
+    .tablet-subnav::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .tablet-subnav::-webkit-scrollbar-thumb {
+      border: none;
+    }
+
+    @supports not selector(::-webkit-scrollbar) {
+      html {
+        scrollbar-width: thin;
+        scrollbar-color: var(--border-strong) var(--bg);
+      }
+    }
+
     img {
       display: block;
       max-width: 100%;
@@ -139,24 +181,24 @@
     }
 
     .brand-link {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
       min-height: 44px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    .brand-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--cerise);
-      flex-shrink: 0;
+    .brand-wordmark {
+      height: 22px;
+      width: auto;
+      display: block;
+      filter: brightness(0);
+      opacity: 0.92;
+      transition: filter 0.2s ease, opacity 0.2s ease;
+    }
+
+    :root[data-theme="dark"] .brand-wordmark {
+      filter: none;
+      opacity: 0.96;
     }
 
     .desktop-nav {
@@ -1281,8 +1323,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="#top" class="brand-link" aria-label="Abingdon Music | Save The Tour | Home">
-        <span class="brand-dot" aria-hidden="true"></span>
-        <span>Save The Tour</span>
+        <img src="stt wordmark.svg" alt="Save The Tour" class="brand-wordmark" />
       </a>
 
       <nav class="desktop-nav" aria-label="Primary sections">
