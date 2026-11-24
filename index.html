@@ -4036,7 +4036,7 @@ function realignInitialHash() {
       document.getElementById("reset-letter-btn").addEventListener("click", () => {
         [1, 2, 3].forEach(num => {
           const el = document.getElementById("sender-field-" + num);
-          el.value = "";
+          if (el) el.value = "";
           storageHelper.set(`savethetour_${activeLetterKey}_f${num}`, "");
         });
         renderFormalLetter();
