@@ -1864,17 +1864,10 @@
       transition: border-color 0.15s ease, transform 0.15s ease;
     }
 
-    .supporter-item:nth-child(5n+1) { border-left-color: var(--cerise-900); }
-    .supporter-item:nth-child(5n+2) { border-left-color: var(--cerise-800); }
-    .supporter-item:nth-child(5n+3) { border-left-color: var(--cerise-700); }
-    .supporter-item:nth-child(5n+4) { border-left-color: var(--cerise-600); }
-    .supporter-item:nth-child(5n+5) { border-left-color: var(--cerise-400); }
-
-    .supporter-item:hover {
-      border-color: var(--border-strong);
-      border-left-color: var(--cerise);
-      transform: translateY(-1px);
-    }
+    .supporter-item[data-ensemble="orchestra"] { border-left-color: var(--cerise-900); }
+    .supporter-item[data-ensemble="choir"]     { border-left-color: var(--cerise-700); }
+    .supporter-item[data-ensemble="bigband"]   { border-left-color: var(--cerise-500); }
+    .supporter-item[data-ensemble="multiple"] { border-left-color: var(--cerise-400); }
 
     .supporter-head {
       display: flex;
@@ -4369,20 +4362,21 @@
       if (drawerAudioCard) drawerAudioCard.classList.toggle("is-playing", playing);
       if (mobileFloatPlay) mobileFloatPlay.classList.toggle("is-playing", playing);
       if (floatPlayLabel) floatPlayLabel.textContent = (playing ? "Pause · " : "Play · ") + work.shortName;
+      if ("mediaSession" in navigator) {
+        navigator.mediaSession.playbackState = playing ? "playing" : "paused";
+      }
     }
 
     function renderCustomTrackPickers(workIdx, mvtIdx) {
       const activeWork = PROGRAMME_WORKS[workIdx];
       const activeMvt  = activeWork.movements[mvtIdx];
 
-      // 1. Update header mini-player label
       if (miniTrackLabel) {
         miniTrackLabel.textContent = activeWork.movements.length > 1
           ? `${activeWork.shortName} · ${activeMvt.label}`
           : activeWork.shortName;
       }
 
-      // 2. Render desktop/mobile header popover track list
       if (popoverTrackList) {
         popoverTrackList.innerHTML = "";
         PROGRAMME_WORKS.forEach((w, idx) => {
@@ -4407,7 +4401,6 @@
         });
       }
 
-      // 3. Render header popover movement chips
       if (popoverMvtsWrap && popoverMvtStrip) {
         if (activeWork.movements.length > 1) {
           popoverMvtsWrap.style.display = "block";
@@ -4428,7 +4421,6 @@
         }
       }
 
-      // 4. Render mobile menu drawer audio widget
       if (drawerAudioEns) drawerAudioEns.textContent = activeWork.ensemble;
       if (drawerAudioTitle) drawerAudioTitle.textContent = `${activeWork.composer} — ${activeWork.shortTitle}`;
       if (drawerAudioSub) drawerAudioSub.textContent = activeMvt.label;
@@ -4466,21 +4458,65 @@
       }
     }
 
+    const ENSEMBLE_ARTWORK = {
+      "Symphony Orchestra": "/symphony.jpg",
+      "Chapel Choir": "/choir.jpg",
+      "Big Band": "/band.jpg"
+    };
+
+    function updatePositionState() {
+      if (!("mediaSession" in navigator) || !("setPositionState" in navigator.mediaSession)) return;
+      if (!isFinite(audioEl.duration) || audioEl.duration <= 0) return;
+      try {
+        navigator.mediaSession.setPositionState({
+          duration: audioEl.duration,
+          playbackRate: audioEl.playbackRate || 1,
+          position: Math.min(audioEl.currentTime || 0, audioEl.duration)
+        });
+      } catch (e) {}
+    }
+
+    function setMediaHandler(action, handler) {
+      try {
+        navigator.mediaSession.setActionHandler(action, handler);
+      } catch (e) {}
+    }
+
     function updateMediaSession(work, mvt) {
       if (!("mediaSession" in navigator)) return;
       try {
+        const artPath = ENSEMBLE_ARTWORK[work.ensemble] || "/cathedral.jpg";
+        const artUrl = new URL(artPath, window.location.href).href;
+
         navigator.mediaSession.metadata = new MediaMetadata({
-          title: mvt.label + " — " + work.title,
-          artist: "AS " + work.ensemble,
-          album: "Save the 2027 Germany Music Tour"
-        });
-        navigator.mediaSession.setActionHandler("play", () => {
-          if (audioEl.paused) togglePlayPause();
-        });
-        navigator.mediaSession.setActionHandler("pause", () => {
-          if (!audioEl.paused) togglePlayPause();
+          title: work.movements.length > 1 ? `${mvt.label} — ${work.shortTitle}` : work.shortTitle,
+          artist: `${work.composer} · AS ${work.ensemble}`,
+          album: "Save the 2027 Germany Music Tour",
+          artwork: [
+            { src: artUrl, sizes: "800x500", type: "image/jpeg" }
+          ]
         });
       } catch (e) {}
+
+      setMediaHandler("play", () => {
+        if (audioEl.paused) togglePlayPause();
+      });
+      setMediaHandler("pause", () => {
+        if (!audioEl.paused) togglePlayPause();
+      });
+      setMediaHandler("previoustrack", () => stepTrack(-1));
+      setMediaHandler("nexttrack", () => stepTrack(1));
+      setMediaHandler("seekbackward", null);
+      setMediaHandler("seekforward", null);
+      setMediaHandler("seekto", details => {
+        if (!isFinite(audioEl.duration) || details.seekTime == null) return;
+        if (details.fastSeek && "fastSeek" in audioEl) {
+          audioEl.fastSeek(details.seekTime);
+        } else {
+          audioEl.currentTime = Math.min(Math.max(0, details.seekTime), audioEl.duration);
+        }
+        updatePositionState();
+      });
     }
 
     function loadTrack(workIdx, mvtIdx, autoPlay) {
@@ -4587,6 +4623,23 @@
     audioEl.addEventListener("loadedmetadata", () => {
       timeDur.textContent = formatTime(audioEl.duration);
     });
+
+    audioEl.addEventListener("loadedmetadata", () => {
+      timeDur.textContent = formatTime(audioEl.duration);
+      updatePositionState();
+    });
+
+    audioEl.addEventListener("play", () => {
+      syncPlayIcons(true);
+      updatePositionState();
+    });
+
+    audioEl.addEventListener("pause", () => {
+      syncPlayIcons(false);
+      updatePositionState();
+    });
+
+    audioEl.addEventListener("seeked", updatePositionState);
 
     audioEl.addEventListener("timeupdate", () => {
       if (!isScrubbing && audioEl.duration > 0) {
@@ -4953,6 +5006,15 @@
       });
     }
 
+    function getEnsembleKey(ensemble) {
+      const e = (ensemble || "").toLowerCase();
+      if (e.includes("multiple")) return "multiple";
+      if (e.includes("orchestra")) return "orchestra";
+      if (e.includes("choir"))     return "choir";
+      if (e.includes("big band") || e.includes("bigband")) return "bigband";
+      return "multiple";
+    }
+
     function renderSupporterWall() {
       const grid   = document.getElementById("wall-grid");
       const query  = document.getElementById("wall-search").value.trim().toLowerCase();
@@ -4992,6 +5054,7 @@
       filtered.slice().reverse().forEach((s, idx) => {
         const card = document.createElement("div");
         card.className = "supporter-item";
+        card.dataset.ensemble = getEnsembleKey(s.ensemble);
         card.style.setProperty("--item-delay", Math.min(idx, 10) * 35 + "ms");
 
         const head = document.createElement("div");
@@ -5087,7 +5150,6 @@ function realignInitialHash() {
     }
   }
 
-    // Custom Ensemble Filter Dropdown + Search Clear + Hero Stat Quick-Filter
     const wallSearchInput = document.getElementById("wall-search");
     const wallSearchClear = document.getElementById("wall-search-clear");
     const wallFilterHidden = document.getElementById("wall-filter");
